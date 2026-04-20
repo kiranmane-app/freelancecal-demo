@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow comparison · dark text on pale splash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #1A1815;
+    color: #FFFFFF;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .page-title {
+    font-family: 'Lexend';
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .page-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .panel-label {
+    font-family: 'Lexend';
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 10px;
+  }
+  .swatch {
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    max-width: 320px;
+    border-radius: 28px;
+    padding: 40px 18px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    color: #1A1815;
+  }
+  .wordmark {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .tagline {
+    font-family: 'Lexend';
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .tagline .fun {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 22px;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+  .intro {
+    font-family: 'Lexend';
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-top: 34px;
+  }
+  .cta {
+    position: absolute;
+    bottom: 30px;
+    font-family: 'Lexend';
+    font-size: 13px;
+    font-weight: 600;
+    padding: 11px 26px;
+    border-radius: 26px;
+    background: rgba(26,24,21,0.08);
+    border: 1.5px solid rgba(26,24,21,0.4);
+  }
+
+  /* Variant: no shadow (current v9 behaviour) */
+  .no-shadow .wordmark,
+  .no-shadow .tagline,
+  .no-shadow .intro,
+  .no-shadow .cta { text-shadow: none; }
+
+  /* Variant: subtle white halo (a lifting effect) */
+  .halo .wordmark { text-shadow: 0 2px 6px rgba(255,255,255,0.55), 0 0 2px rgba(255,255,255,0.8); }
+  .halo .tagline,
+  .halo .intro,
+  .halo .cta   { text-shadow: 0 1px 4px rgba(255,255,255,0.55); }
+
+  /* Variant: subtle dark shadow mirrored from light-text version */
+  .dark-shadow .wordmark { text-shadow: 0 2px 6px rgba(0,0,0,0.22); }
+  .dark-shadow .tagline,
+  .dark-shadow .intro,
+  .dark-shadow .cta   { text-shadow: 0 1px 3px rgba(0,0,0,0.22); }
+</style>
+</head>
+<body>
+<div class="page-title">Shadow comparison · dark text on Pride Yellow</div>
+<div class="page-sub">Three variants side by side. Pick by eye.</div>
+
+<div class="grid">
+  <div class="panel">
+    <div class="panel-label">A · no shadow (current v9)</div>
+    <div class="swatch no-shadow" style="background:#FFED00">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta">Say hi to Cal</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label">B · subtle dark shadow</div>
+    <div class="swatch dark-shadow" style="background:#FFED00">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta">Say hi to Cal</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label">C · soft white halo (lift)</div>
+    <div class="swatch halo" style="background:#FFED00">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta">Say hi to Cal</div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top:30px; color: rgba(255,255,255,0.5); font-size:11px;">Same comparison repeats on Trans Light Blue and Trans Pink below.</div>
+
+<div style="height: 20px;"></div>
+
+<div class="page-sub" style="margin-top:30px;">Trans Light Blue</div>
+<div class="grid">
+  <div class="panel"><div class="panel-label">A · no shadow</div>
+    <div class="swatch no-shadow" style="background:#5BCEFA">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+  <div class="panel"><div class="panel-label">B · subtle dark shadow</div>
+    <div class="swatch dark-shadow" style="background:#5BCEFA">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+  <div class="panel"><div class="panel-label">C · soft white halo</div>
+    <div class="swatch halo" style="background:#5BCEFA">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+</div>
+
+<div class="page-sub" style="margin-top:30px;">Trans Pink</div>
+<div class="grid">
+  <div class="panel"><div class="panel-label">A · no shadow</div>
+    <div class="swatch no-shadow" style="background:#F5A9B8">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+  <div class="panel"><div class="panel-label">B · subtle dark shadow</div>
+    <div class="swatch dark-shadow" style="background:#F5A9B8">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+  <div class="panel"><div class="panel-label">C · soft white halo</div>
+    <div class="swatch halo" style="background:#F5A9B8">
+      <div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div></div>
+</div>
+
+</body>
+</html>
