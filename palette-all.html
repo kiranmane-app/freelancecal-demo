@@ -46,12 +46,14 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, 260px);
     gap: 16px;
     max-width: 1400px;
     margin: 0 auto;
+    justify-content: center;
   }
   .swatch {
+    width: 260px;
     aspect-ratio: 9 / 16;
     border-radius: 26px;
     padding: 42px 16px 62px;
