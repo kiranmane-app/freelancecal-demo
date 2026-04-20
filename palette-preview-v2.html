@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreelanceCal · Authentic Pride palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #1A1815;
+    color: #FFFFFF;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .page-title {
+    font-family: 'Lexend';
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .page-sub {
+    font-family: 'Lexend';
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto 36px;
+  }
+  .swatch {
+    aspect-ratio: 9 / 16;
+    border-radius: 24px;
+    padding: 40px 18px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .swatch .label {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Lexend';
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .swatch .wordmark {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 40px;
+    line-height: 1;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    margin-bottom: 14px;
+  }
+  .swatch .tagline {
+    font-family: 'Lexend';
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .swatch .tagline .fun {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 22px;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+  .swatch .intro {
+    font-family: 'Lexend';
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    margin-top: 28px;
+  }
+  .swatch .cta {
+    position: absolute;
+    bottom: 26px;
+    font-family: 'Lexend';
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.22);
+    border: 1.5px solid rgba(255,255,255,0.55);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  }
+  .swatch.dark-text { color: #1A1815; }
+  .swatch.dark-text .wordmark,
+  .swatch.dark-text .tagline,
+  .swatch.dark-text .intro,
+  .swatch.dark-text .cta,
+  .swatch.dark-text .label { text-shadow: none; color: #1A1815; }
+  .swatch.dark-text .cta {
+    background: rgba(26,24,21,0.1);
+    border-color: rgba(26,24,21,0.4);
+  }
+  .group-title {
+    font-family: 'Lexend';
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin: 20px auto 10px;
+    max-width: 1400px;
+    padding-left: 4px;
+  }
+  .group-sub {
+    font-family: 'Lexend';
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    margin: 0 auto 16px;
+    max-width: 1400px;
+    padding-left: 4px;
+  }
+  /* Flag strip visualisation */
+  .flag {
+    display: flex;
+    max-width: 1400px;
+    margin: 4px auto 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 42px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .flag div { flex: 1; }
+</style>
+</head>
+<body>
+<div class="page-title">Authentic Pride palette preview</div>
+<div class="page-sub">Pick one: the 6-stripe classic rainbow, or the original 8-stripe Gilbert Baker flag, or the Progress Pride extended set.</div>
+
+<div class="group-title">Option A — 6-stripe classic Pride rainbow (most widely recognised)</div>
+<div class="group-sub">Red · Orange · Yellow · Green · Blue · Violet. Yellow needs dark text.</div>
+<div class="flag">
+  <div style="background:#E40303"></div>
+  <div style="background:#FF8C00"></div>
+  <div style="background:#FFED00"></div>
+  <div style="background:#008026"></div>
+  <div style="background:#004DFF"></div>
+  <div style="background:#750787"></div>
+</div>
+<div class="grid">
+  <div class="swatch" style="background:#E40303"><div class="label">#E40303 · RED</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#FF8C00"><div class="label">#FF8C00 · ORANGE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#FFED00"><div class="label">#FFED00 · YELLOW (dark text)</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#008026"><div class="label">#008026 · GREEN</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#004DFF"><div class="label">#004DFF · BLUE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#750787"><div class="label">#750787 · VIOLET</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+
+<div class="group-title">Option B — Original 8-stripe Gilbert Baker flag (1978)</div>
+<div class="group-sub">Adds Hot pink (sex) + Turquoise (magic/art) to the 6. Richer palette.</div>
+<div class="flag">
+  <div style="background:#FF69B4"></div>
+  <div style="background:#E40303"></div>
+  <div style="background:#FF8C00"></div>
+  <div style="background:#FFED00"></div>
+  <div style="background:#008026"></div>
+  <div style="background:#00C0C0"></div>
+  <div style="background:#004DFF"></div>
+  <div style="background:#750787"></div>
+</div>
+<div class="grid">
+  <div class="swatch" style="background:#FF69B4"><div class="label">#FF69B4 · HOT PINK</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#00C0C0"><div class="label">#00C0C0 · TURQUOISE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+
+<div class="group-title">Option C — Progress Pride additions (trans + POC)</div>
+<div class="group-sub">Adds light blue + pink + white (trans) and brown + black (POC). Gives the full inclusive spread.</div>
+<div class="flag">
+  <div style="background:#E40303"></div>
+  <div style="background:#FF8C00"></div>
+  <div style="background:#FFED00"></div>
+  <div style="background:#008026"></div>
+  <div style="background:#004DFF"></div>
+  <div style="background:#750787"></div>
+  <div style="background:#613915"></div>
+  <div style="background:#000000"></div>
+  <div style="background:#5BCEFA"></div>
+  <div style="background:#F5A9B8"></div>
+  <div style="background:#FFFFFF"></div>
+</div>
+<div class="grid">
+  <div class="swatch" style="background:#5BCEFA"><div class="label">#5BCEFA · TRANS LIGHT BLUE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#F5A9B8"><div class="label">#F5A9B8 · TRANS PINK</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#613915"><div class="label">#613915 · POC BROWN</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#000000"><div class="label">#000000 · POC BLACK</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+
+</body>
+</html>
