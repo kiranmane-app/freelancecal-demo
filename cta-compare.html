@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTA comparison · translucent vs solid-white</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lexend', sans-serif; background: #1A1815; color: #FFFFFF; padding: 24px; min-height: 100vh; }
+  .page-title { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 8px; }
+  .page-sub { font-size: 12px; color: rgba(255,255,255,0.55); text-align: center; margin-bottom: 28px; }
+  .group-title { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 22px auto 12px; max-width: 1600px; padding-left: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, 320px); gap: 20px; max-width: 1600px; margin: 0 auto; justify-content: center; }
+  .swatch { width: 320px; aspect-ratio: 9 / 16; border-radius: 28px; padding: 44px 14px 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .swatch .label { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; opacity: 0.85; }
+  .swatch .wordmark { font-family: 'Fredericka the Great', serif; font-size: 44px; line-height: 1; margin-bottom: 14px; white-space: nowrap; }
+  .swatch .tagline { font-size: 15px; font-weight: 500; }
+  .swatch .tagline .fun { font-family: 'Fredericka the Great', serif; font-size: 22px; vertical-align: middle; margin-left: 2px; }
+  .swatch .intro { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; margin-top: 32px; }
+  .swatch .cta { position: absolute; bottom: 28px; font-family: 'Lexend'; font-size: 13px; font-weight: 600; padding: 11px 26px; border-radius: 26px; }
+
+  /* Light-text splash common */
+  .swatch.light-text { color: #FFFFFF; }
+  .swatch.light-text .wordmark { text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  .swatch.light-text .tagline, .swatch.light-text .intro, .swatch.light-text .cta { text-shadow: 0 1px 3px rgba(0,0,0,0.35); }
+
+  /* Dark-text splash common */
+  .swatch.dark-text { color: #1A1815; }
+  .swatch.dark-text .wordmark { text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+  .swatch.dark-text .tagline, .swatch.dark-text .intro, .swatch.dark-text .cta { text-shadow: 0 1px 2px rgba(0,0,0,0.18); }
+
+  /* Black bg */
+  .swatch.on-black .wordmark { text-shadow: 0 3px 4px rgba(255,255,255,0.35); }
+  .swatch.on-black .tagline, .swatch.on-black .intro, .swatch.on-black .cta { text-shadow: 0 2px 3px rgba(255,255,255,0.3); }
+
+  /* APPROACH A — translucent white overlay (current) */
+  .approach-a .swatch.light-text .cta { background: rgba(255,255,255,0.5); border: 1.5px solid rgba(255,255,255,0.75); }
+  .approach-a .swatch.dark-text .cta { background: rgba(26,24,21,0.08); border: 1.5px solid rgba(26,24,21,0.4); }
+  .approach-a .swatch.white-bg .cta { background: rgba(26,24,21,0.06); border: 1.5px solid rgba(26,24,21,0.55); }
+
+  /* APPROACH B — SOLID near-white pill with DARK text on ALL splashes */
+  .approach-b .swatch .cta {
+    background: #FFFFFF;
+    border: none;
+    color: #1A1815;
+    text-shadow: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  }
+  /* On white splash, B becomes a soft off-white to keep the pill visible */
+  .approach-b .swatch.white-bg .cta { background: #F1F1EF; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+</style>
+</head>
+<body>
+
+<div class="page-title">CTA comparison — two approaches, same 11 splashes</div>
+<div class="page-sub">Look at each pair. Which feels more like FreelanceCal?</div>
+
+<div class="group-title">Approach A · translucent white overlay (current behaviour — blue goes purple)</div>
+<div class="approach-a">
+<div class="grid">
+  <div class="swatch light-text" style="background:#E40303"><div class="label">Red</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#FF8C00"><div class="label">Orange</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#FFED00"><div class="label">Yellow</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#008026"><div class="label">Green</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#004DFF"><div class="label">Blue</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#750787"><div class="label">Violet</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#613915"><div class="label">Brown</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text on-black" style="background:#000000"><div class="label">Black</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#5BCEFA"><div class="label">Trans Light Blue</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#F5A9B8"><div class="label">Trans Pink</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text white-bg" style="background:#FFFFFF"><div class="label">Trans White</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+</div>
+
+<div class="group-title">Approach B · locked white pill with dark text (Lemonade approach)</div>
+<div class="approach-b">
+<div class="grid">
+  <div class="swatch light-text" style="background:#E40303"><div class="label">Red</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#FF8C00"><div class="label">Orange</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#FFED00"><div class="label">Yellow</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#008026"><div class="label">Green</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#004DFF"><div class="label">Blue</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#750787"><div class="label">Violet</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text" style="background:#613915"><div class="label">Brown</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch light-text on-black" style="background:#000000"><div class="label">Black</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#5BCEFA"><div class="label">Trans Light Blue</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#F5A9B8"><div class="label">Trans Pink</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text white-bg" style="background:#FFFFFF"><div class="label">Trans White</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+</div>
+
+</body>
+</html>
