@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreelanceCal · Palette preview · 9 splash colours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #1A1815;
+    color: #FFFFFF;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .page-title {
+    font-family: 'Lexend';
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .swatch {
+    aspect-ratio: 9 / 16;
+    border-radius: 24px;
+    padding: 40px 18px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .swatch .label {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Lexend';
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .swatch .wordmark {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 42px;
+    line-height: 1;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    margin-bottom: 14px;
+  }
+  .swatch .tagline {
+    font-family: 'Lexend';
+    font-size: 15px;
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    margin-bottom: 4px;
+  }
+  .swatch .tagline .fun {
+    font-family: 'Fredericka the Great', serif;
+    font-size: 22px;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+  .swatch .intro {
+    font-family: 'Lexend';
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    margin-top: 28px;
+  }
+  .swatch .cta {
+    position: absolute;
+    bottom: 26px;
+    font-family: 'Lexend';
+    font-size: 13px;
+    font-weight: 600;
+    padding: 11px 24px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.22);
+    border: 1.5px solid rgba(255,255,255,0.55);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  }
+
+  /* Dark-text variant for bright yellow */
+  .swatch.dark-text { color: #1A1815; }
+  .swatch.dark-text .wordmark,
+  .swatch.dark-text .tagline,
+  .swatch.dark-text .intro,
+  .swatch.dark-text .cta { text-shadow: none; color: #1A1815; }
+  .swatch.dark-text .cta {
+    background: rgba(26,24,21,0.1);
+    border-color: rgba(26,24,21,0.4);
+  }
+  .swatch.dark-text .label { color: #1A1815; }
+
+  .group-title {
+    font-family: 'Lexend';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 28px 0 14px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+<div class="page-title">Palette preview — 9 splash colours (7 existing + 2 new for Pride completeness)</div>
+
+<div class="group-title">CURRENT 7 · already in palette</div>
+<div class="grid">
+  <div class="swatch" style="background:#E94E77"><div class="label">#E94E77 · PINK</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#F59E0B"><div class="label">#F59E0B · AMBER</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#0EA5E9"><div class="label">#0EA5E9 · SKY BLUE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#8B5CF6"><div class="label">#8B5CF6 · PURPLE</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#10B981"><div class="label">#10B981 · GREEN</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#0D9488"><div class="label">#0D9488 · TEAL</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#EC4899"><div class="label">#EC4899 · MAGENTA</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+
+<div class="group-title">PROPOSED NEW · red (Pride) + two yellow options — pick one yellow</div>
+<div class="grid">
+  <div class="swatch" style="background:#E40303"><div class="label">#E40303 · PRIDE RED (NEW)</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch dark-text" style="background:#FFED00"><div class="label">#FFED00 · AUTHENTIC PRIDE YELLOW · dark text</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+  <div class="swatch" style="background:#EAB308"><div class="label">#EAB308 · HONEY YELLOW · white text</div><div class="wordmark">FreelanceCal</div><div class="tagline">Less work, more <span class="fun">Fun.</span></div><div class="intro">Four steps. Zero stress.</div><div class="cta">Say hi to Cal</div></div>
+</div>
+
+</body>
+</html>
