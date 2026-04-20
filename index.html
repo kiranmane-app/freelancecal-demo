@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v57</title>
+<title>Cal · Tap Fun to enter · v58</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -607,7 +607,11 @@
       box-shadow: 0 8px 24px rgba(233, 78, 119, 0.25);
       transition: transform 0.15s ease, box-shadow 0.2s ease;
       margin-bottom: 20px;
-      animation: splash-cta-pulse 3s ease-in-out infinite;
+      animation: hero-cta-pulse 3s ease-in-out infinite;
+    }
+    @keyframes hero-cta-pulse {
+      0%, 100% { transform: scale(1);    box-shadow: 0 8px 24px rgba(233, 78, 119, 0.25); }
+      50%      { transform: scale(1.04); box-shadow: 0 12px 32px rgba(233, 78, 119, 0.45); }
     }
     .desktop-hero .hero-cta:hover {
       transform: translateY(-2px);
@@ -671,7 +675,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">Cal · v57 · Desktop Landing (Lemonade pattern)</div>
+    <div class="title">Cal · v58 · Desktop CTA fixed (solid pink + proper pulse)</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
