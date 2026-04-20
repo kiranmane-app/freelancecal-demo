@@ -3,122 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FreelanceCal · fonts with colour change</title>
+<title>Dyslexia-friendly font candidates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Ultra&family=Stint+Ultra+Expanded&family=Ranchers&family=Smokum&family=Ewert&family=Ceviche+One&family=Pacifico&family=Lobster&family=Bangers&family=Righteous&family=Passion+One:wght@900&family=Bungee&family=Luckiest+Guy&family=Baloo+2:wght@800&family=Sigmar+One&family=Titan+One&family=Kalam:wght@700&family=Patrick+Hand&family=Gloria+Hallelujah&family=Concert+One&family=Fredericka+the+Great&family=Lexend:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@500;600;700&family=Comfortaa:wght@600;700&family=Fredericka+the+Great&family=Lexend:wght@500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Lexend', sans-serif;
     background: #F7F7F6;
     color: #1A1815;
-    padding: 20px;
+    padding: 24px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
   @media (prefers-color-scheme: dark) {
     body { background: #26262A; color: #FFFFFF; }
     .card { background: #1F1F23; }
-    .section-title { color: #FFFFFF; }
   }
-  .section-title {
-    font-family: 'Lexend';
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 24px 0 12px;
-    color: #1A1815;
-    opacity: 0.75;
-  }
-  .section-title:first-child { margin-top: 0; }
   .card {
     background: #FFFFFF;
-    border-radius: 16px;
-    padding: 30px 16px;
-    margin-bottom: 14px;
+    border-radius: 18px;
+    padding: 36px 18px;
+    margin-bottom: 16px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   }
   .card .label {
     font-family: 'Lexend';
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.5;
-    margin-bottom: 14px;
+    opacity: 0.55;
+    margin-bottom: 18px;
   }
   .wordmark {
     line-height: 1;
     word-break: break-word;
     animation: rainbow-text 6s linear infinite;
+    margin-bottom: 18px;
   }
   @keyframes rainbow-text {
     0%   { color: #E40303; } 16%  { color: #FF8C00; } 33%  { color: #FFED00; }
     50%  { color: #008026; } 66%  { color: #004DFF; } 83%  { color: #750787; }
     100% { color: #E40303; }
   }
-  /* Family: vintage poster / similar to Fredericka WITHOUT hatching */
-  .abril        .wordmark { font-family: 'Abril Fatface', serif;          font-size: 54px; }
-  .ultra        .wordmark { font-family: 'Ultra', serif;                  font-size: 46px; }
-  .stint        .wordmark { font-family: 'Stint Ultra Expanded', serif;   font-size: 46px; }
-  .ranchers     .wordmark { font-family: 'Ranchers', cursive;             font-size: 52px; }
-  .smokum       .wordmark { font-family: 'Smokum', cursive;               font-size: 60px; }
-  .ewert        .wordmark { font-family: 'Ewert', cursive;                font-size: 44px; }
-  .ceviche      .wordmark { font-family: 'Ceviche One', cursive;          font-size: 62px; }
+  .fun {
+    display: inline-block;
+    line-height: 1;
+    animation: rainbow-text 6s linear infinite;
+  }
+  .card .tag {
+    font-family: 'Lexend';
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .card .intro {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
 
-  /* Completely different directions */
-  .pacifico     .wordmark { font-family: 'Pacifico', cursive;             font-size: 56px; }
-  .lobster      .wordmark { font-family: 'Lobster', cursive;              font-size: 56px; }
-  .bangers      .wordmark { font-family: 'Bangers', cursive;              font-size: 60px; letter-spacing: 0.02em; }
-  .righteous    .wordmark { font-family: 'Righteous', sans-serif;         font-size: 52px; }
-  .passion      .wordmark { font-family: 'Passion One', sans-serif;       font-size: 72px; font-weight: 900; }
-  .bungee       .wordmark { font-family: 'Bungee', sans-serif;            font-size: 44px; letter-spacing: 0.02em; }
-  .lucky        .wordmark { font-family: 'Luckiest Guy', cursive;         font-size: 52px; }
-  .baloo        .wordmark { font-family: 'Baloo 2', sans-serif;           font-size: 56px; font-weight: 800; }
-  .sigmar       .wordmark { font-family: 'Sigmar One', cursive;           font-size: 50px; }
-  .titan        .wordmark { font-family: 'Titan One', cursive;            font-size: 50px; }
-  .kalam        .wordmark { font-family: 'Kalam', cursive;                font-size: 60px; font-weight: 700; }
-  .patrick      .wordmark { font-family: 'Patrick Hand', cursive;         font-size: 64px; }
-  .gloria       .wordmark { font-family: 'Gloria Hallelujah', cursive;    font-size: 50px; }
-  .concert      .wordmark { font-family: 'Concert One', cursive;          font-size: 56px; }
+  .baloo .wordmark,
+  .baloo .intro,
+  .baloo .fun    { font-family: 'Baloo 2', sans-serif; font-weight: 700; }
+  .baloo .wordmark { font-size: 54px; font-weight: 800; }
+  .baloo .fun    { font-size: 28px; }
 
-  /* Reference: current Fredericka (greyed, no animation) */
-  .fredericka   .wordmark { font-family: 'Fredericka the Great', serif;   font-size: 54px; color: #888 !important; animation: none; }
+  .fredoka .wordmark,
+  .fredoka .intro,
+  .fredoka .fun   { font-family: 'Fredoka', sans-serif; font-weight: 600; }
+  .fredoka .wordmark { font-size: 54px; font-weight: 700; }
+  .fredoka .fun   { font-size: 28px; }
+
+  .comfortaa .wordmark,
+  .comfortaa .intro,
+  .comfortaa .fun { font-family: 'Comfortaa', sans-serif; font-weight: 700; }
+  .comfortaa .wordmark { font-size: 50px; font-weight: 700; }
+  .comfortaa .fun { font-size: 28px; }
+
+  .current .wordmark,
+  .current .intro,
+  .current .fun { font-family: 'Fredericka the Great', serif; color: #888 !important; animation: none; }
+  .current .wordmark { font-size: 54px; }
+  .current .fun { font-size: 28px; }
+
+  .divider {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin: 22px 0 14px;
+  }
 </style>
 </head>
 <body>
 
-<div class="section-title">Fredericka-family · vintage poster · NO hatching</div>
-<div class="card abril"><div class="label">Abril Fatface</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card ultra"><div class="label">Ultra</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card stint"><div class="label">Stint Ultra Expanded</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card ranchers"><div class="label">Ranchers</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card smokum"><div class="label">Smokum</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card ewert"><div class="label">Ewert</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card ceviche"><div class="label">Ceviche One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card baloo">
+  <div class="label">① Baloo 2</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
 
-<div class="section-title">Completely new direction</div>
-<div class="card pacifico"><div class="label">Pacifico</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card lobster"><div class="label">Lobster</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card bangers"><div class="label">Bangers</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card righteous"><div class="label">Righteous</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card passion"><div class="label">Passion One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card bungee"><div class="label">Bungee</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card lucky"><div class="label">Luckiest Guy</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card baloo"><div class="label">Baloo 2</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card sigmar"><div class="label">Sigmar One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card titan"><div class="label">Titan One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card kalam"><div class="label">Kalam</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card patrick"><div class="label">Patrick Hand</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card gloria"><div class="label">Gloria Hallelujah</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card concert"><div class="label">Concert One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card fredoka">
+  <div class="label">② Fredoka</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
 
-<div class="section-title">Current · Fredericka the Great (for reference)</div>
-<div class="card fredericka"><div class="label">Fredericka the Great</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card comfortaa">
+  <div class="label">③ Comfortaa</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="divider">current · for comparison</div>
+
+<div class="card current">
+  <div class="label">Fredericka the Great</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
 
 </body>
 </html>
