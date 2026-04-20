@@ -176,8 +176,7 @@
     font-size: 60px;
     fill: var(--r1);
     stroke: #1A1815;
-    stroke-width: 0.8;
-    paint-order: stroke fill;
+    stroke-width: 0.5;
     animation: rainbow-svg-fill 6s linear 1.4s infinite;
   }
   @keyframes rainbow-svg-fill {
@@ -224,8 +223,7 @@
     font-size: 32px;
     fill: var(--r1);
     stroke: #1A1815;
-    stroke-width: 0.6;
-    paint-order: stroke fill;
+    stroke-width: 0.4;
     animation: rainbow-svg-fill 6s linear 3.6s infinite;
   }
 
@@ -389,8 +387,7 @@
     font-size: 28px;
     fill: var(--r1);
     stroke: #1A1815;
-    stroke-width: 0.6;
-    paint-order: stroke fill;
+    stroke-width: 0.4;
   }
   :root[data-theme="dark"] .speech-line.two .scene-freelancecal-svg text {
     stroke: #FFFFFF;
@@ -702,9 +699,9 @@
         <div class="splash-curtain" id="splashCurtain" onclick="enterApp(event)">
           <div class="splash-content">
             <svg class="splash-wordmark-svg" viewBox="0 0 420 80" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              <text x="210" y="60" text-anchor="middle">FreelanceCal</text>
+              <text x="210" y="60" text-anchor="middle" paint-order="stroke fill">FreelanceCal</text>
             </svg>
-            <div class="splash-tagline"><span class="splash-type">Less work, more </span><svg class="fun-heart-svg" viewBox="0 0 70 42" xmlns="http://www.w3.org/2000/svg"><text x="35" y="32" text-anchor="middle">Fun.</text></svg></div>
+            <div class="splash-tagline"><span class="splash-type">Less work, more </span><svg class="fun-heart-svg" viewBox="0 0 70 42" xmlns="http://www.w3.org/2000/svg"><text x="35" y="32" text-anchor="middle" paint-order="stroke fill">Fun.</text></svg></div>
             <div class="splash-intro">Four steps. Zero <span class="stress">stress.<svg class="strike-svg" viewBox="0 0 100 30" preserveAspectRatio="none"><path class="stroke-1" d="M1,17 Q28,9 58,15 T99,13"/><path class="stroke-2" d="M1,15 Q32,21 66,13 T99,18"/><path class="stroke-3" d="M1,19 Q40,14 70,20 T99,15"/></svg></span></div>
           </div>
           <button class="splash-cta" type="button" onclick="enterApp(event)">Say hi to Cal</button>
@@ -716,7 +713,7 @@
           <!-- Speech zone -->
           <div class="speech-zone">
             <span class="speech-line one">Hi, I'm Cal.</span>
-            <span class="speech-line two"><svg class="scene-freelancecal-svg" viewBox="0 0 220 42" xmlns="http://www.w3.org/2000/svg"><text x="110" y="30" text-anchor="middle">FreelanceCal.</text></svg></span>
+            <span class="speech-line two"><svg class="scene-freelancecal-svg" viewBox="0 0 220 42" xmlns="http://www.w3.org/2000/svg"><text x="110" y="30" text-anchor="middle" paint-order="stroke fill">FreelanceCal.</text></svg></span>
           </div>
 
           <!-- Cal zone -->
