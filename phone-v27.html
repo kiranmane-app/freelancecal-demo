@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FreelanceCal · phone v26 · crisp 1px pixel outline (multi-shadow)</title>
+<title>FreelanceCal · phone v27 · thin border applied consistently (wordmark, Fun, Cal FreelanceCal, keypad)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,30 +27,35 @@
     --scene-scale: 1;
   }
 
-  /* Dark-mode wordmark — same pixel outline approach, light colour. */
-  :root[data-theme="dark"] .splash-wordmark {
-    text-shadow:
-      -1px -1px 0 #FFFFFF,
-       1px -1px 0 #FFFFFF,
-      -1px  1px 0 #FFFFFF,
-       1px  1px 0 #FFFFFF,
-       0px -1px 0 #FFFFFF,
-       0px  1px 0 #FFFFFF,
-      -1px  0px 0 #FFFFFF,
-       1px  0px 0 #FFFFFF;
+  /* All colour-changing text shares the same thin border — consistency rule. */
+  .splash-tagline .fun-heart,
+  .speech-line.two {
+    -webkit-text-stroke: 1px #1A1815;
+    paint-order: stroke fill;
   }
+
+  /* Keypad circles — colour-changing fills get the same outline via SVG stroke */
+  .btn-rainbow {
+    stroke: #1A1815;
+    stroke-width: 1;
+  }
+
+  /* Dark-mode: swap the border colour to white across every colour-changing element */
+  :root[data-theme="dark"] .splash-wordmark,
+  :root[data-theme="dark"] .splash-tagline .fun-heart,
+  :root[data-theme="dark"] .speech-line.two {
+    -webkit-text-stroke: 1px #FFFFFF;
+    paint-order: stroke fill;
+  }
+  :root[data-theme="dark"] .btn-rainbow { stroke: #FFFFFF; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .splash-wordmark {
-      text-shadow:
-        -1px -1px 0 #FFFFFF,
-         1px -1px 0 #FFFFFF,
-        -1px  1px 0 #FFFFFF,
-         1px  1px 0 #FFFFFF,
-         0px -1px 0 #FFFFFF,
-         0px  1px 0 #FFFFFF,
-        -1px  0px 0 #FFFFFF,
-         1px  0px 0 #FFFFFF;
+    :root:not([data-theme="light"]) .splash-wordmark,
+    :root:not([data-theme="light"]) .splash-tagline .fun-heart,
+    :root:not([data-theme="light"]) .speech-line.two {
+      -webkit-text-stroke: 1px #FFFFFF;
+      paint-order: stroke fill;
     }
+    :root:not([data-theme="light"]) .btn-rainbow { stroke: #FFFFFF; }
   }
 
   :root[data-theme="dark"] {
@@ -173,18 +178,11 @@
     color: var(--r1);  /* starts at first rainbow colour, cycled by rainbow-text */
     opacity: 0;
     line-height: 1;
-    /* Crisp 1px pixel outline — eight 1px sharp text-shadows simulate a clean border around
-       every letter. Never scribbles (no blur), always visible. Light-mode default: dark outline. */
-    -webkit-text-stroke: 0;
-    text-shadow:
-      -1px -1px 0 #1A1815,
-       1px -1px 0 #1A1815,
-      -1px  1px 0 #1A1815,
-       1px  1px 0 #1A1815,
-       0px -1px 0 #1A1815,
-       0px  1px 0 #1A1815,
-      -1px  0px 0 #1A1815,
-       1px  0px 0 #1A1815;
+    /* Thin border — 1px stroke with paint-order:stroke-fill means fill covers INSIDE half of stroke,
+       so only outer ~0.5px is visible. Crisp, thin, not scribbly. Same for ALL colour-changing text. */
+    text-shadow: none;
+    -webkit-text-stroke: 1px #1A1815;
+    paint-order: stroke fill;
     animation: soft-in 0.8s ease-out 0.6s forwards,
                rainbow-text 6s linear 1.4s infinite;
   }
@@ -655,7 +653,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">FreelanceCal · phone v26 · pixel outline around wordmark</div>
+    <div class="title">FreelanceCal · phone v27 · thin border on all colour-changing text</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
