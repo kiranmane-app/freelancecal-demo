@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v53</title>
+<title>Cal · Tap Fun to enter · v54</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -515,17 +515,88 @@
     :root { --scene-scale: 0.76; }
   }
 
-  /* Tablet — let the phone be bigger, give it room */
-  @media (min-width: 768px) and (min-height: 900px) {
-    :root { --scene-scale: 1; }
+  /* Desktop hero — hidden on mobile/tablet by default */
+  .desktop-hero { display: none; }
+
+  /* Tablet — scale phone up so it fills the viewport better */
+  @media (min-width: 768px) {
+    :root { --scene-scale: 1.15; }
     .phone-stage { padding: 40px; }
   }
+  @media (min-width: 768px) and (min-height: 1000px) {
+    :root { --scene-scale: 1.3; }
+  }
 
-  /* Desktop — phone centered with generous margins */
+  /* Desktop — two-column hero layout: text left, phone right */
   @media (min-width: 1200px) {
     :root { --scene-scale: 1; }
-    .phone-stage { padding: 60px; }
+    .phone-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      padding: 40px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      align-items: center;
+    }
     .top-bar { padding: 16px 40px; }
+    .desktop-hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      min-width: 0;
+    }
+    .desktop-hero .hero-wordmark {
+      font-family: 'Fredericka the Great', serif;
+      font-size: 96px;
+      line-height: 1.02;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .desktop-hero .hero-tag {
+      font-family: 'Lexend', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .desktop-hero .hero-tag .fun {
+      font-family: 'Fredericka the Great', serif;
+      color: var(--r1);
+      display: inline-block;
+      font-size: 40px;
+      vertical-align: middle;
+      margin-left: 4px;
+      animation: heartbeat 2.4s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .desktop-hero .hero-desc {
+      font-family: 'Lexend', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .desktop-hero .hero-hint {
+      font-family: 'Lexend', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+
+  /* Widescreen — bigger hero text */
+  @media (min-width: 1600px) {
+    .desktop-hero .hero-wordmark { font-size: 120px; }
+    .desktop-hero .hero-tag { font-size: 32px; }
+    .desktop-hero .hero-tag .fun { font-size: 46px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -548,6 +619,12 @@
   </div>
 
   <div class="phone-stage">
+    <div class="desktop-hero">
+      <div class="hero-wordmark">FreelanceCal</div>
+      <p class="hero-tag">Less work, more <span class="fun">Fun.</span></p>
+      <p class="hero-desc">A billing and companion app built for freelance photographic crew. Four steps — enter rate, send estimate, raise invoice, get paid. Everything else stays out of your way.</p>
+      <p class="hero-hint">Tap the phone → to meet Cal</p>
+    </div>
     <div class="phone">
       <div class="notch"></div>
       <div class="scene" id="scene">
