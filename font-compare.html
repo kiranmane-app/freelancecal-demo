@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Font candidates for FreelanceCal wordmark (mobile-first)</title>
+<title>FreelanceCal · fonts with colour change</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&family=Permanent+Marker&family=Chewy&family=Fredericka+the+Great&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lobster&family=Bangers&family=Righteous&family=Passion+One:wght@700;900&family=Bungee&family=Luckiest+Guy&family=Baloo+2:wght@600;700;800&family=Fredoka:wght@500;600;700&family=Sigmar+One&family=Titan+One&family=Kalam:wght@700&family=Patrick+Hand&family=Gloria+Hallelujah&family=Concert+One&family=Lexend:wght@500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -21,71 +21,69 @@
     body { background: #26262A; color: #FFFFFF; }
     .card { background: #1F1F23; }
   }
-  .page-title {
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 600;
-    opacity: 0.7;
-    text-align: center;
-    margin-bottom: 6px;
-  }
-  .page-sub {
-    font-size: 12px;
-    opacity: 0.55;
-    text-align: center;
-    margin-bottom: 24px;
-  }
   .card {
     background: #FFFFFF;
     border-radius: 16px;
-    padding: 28px 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 30px 16px;
+    margin-bottom: 14px;
     text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
   .card .label {
     font-family: 'Lexend';
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    opacity: 0.55;
-    margin-bottom: 12px;
-  }
-  .card .wordmark {
-    line-height: 1;
-    word-break: break-word;
-    color: #E94E77;
-  }
-  .card.fredoka .wordmark         { font-family: 'Fredoka', sans-serif; font-size: 52px; font-weight: 600; }
-  .card.caveat .wordmark          { font-family: 'Caveat', cursive; font-size: 72px; font-weight: 700; }
-  .card.marker .wordmark          { font-family: 'Permanent Marker', cursive; font-size: 46px; }
-  .card.chewy .wordmark           { font-family: 'Chewy', cursive; font-size: 52px; }
-  .card.fredericka .wordmark      { font-family: 'Fredericka the Great', serif; font-size: 52px; color: #888; }
-  .note {
-    font-size: 11px;
-    opacity: 0.6;
-    margin-top: 10px;
-  }
-  .divider {
-    text-align: center;
     font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     opacity: 0.5;
-    margin: 24px 0 14px;
+    margin-bottom: 14px;
   }
+  .wordmark {
+    line-height: 1;
+    word-break: break-word;
+    animation: rainbow-text 6s linear infinite;
+  }
+  @keyframes rainbow-text {
+    0%   { color: #E40303; }
+    16%  { color: #FF8C00; }
+    33%  { color: #FFED00; }
+    50%  { color: #008026; }
+    66%  { color: #004DFF; }
+    83%  { color: #750787; }
+    100% { color: #E40303; }
+  }
+  .pacifico     .wordmark { font-family: 'Pacifico', cursive;             font-size: 56px; }
+  .lobster      .wordmark { font-family: 'Lobster', cursive;              font-size: 56px; }
+  .bangers      .wordmark { font-family: 'Bangers', cursive;              font-size: 60px; letter-spacing: 0.02em; }
+  .righteous    .wordmark { font-family: 'Righteous', sans-serif;         font-size: 52px; }
+  .passion      .wordmark { font-family: 'Passion One', sans-serif;       font-size: 72px; font-weight: 900; }
+  .bungee       .wordmark { font-family: 'Bungee', sans-serif;            font-size: 44px; letter-spacing: 0.02em; }
+  .lucky        .wordmark { font-family: 'Luckiest Guy', cursive;         font-size: 52px; }
+  .baloo        .wordmark { font-family: 'Baloo 2', sans-serif;           font-size: 56px; font-weight: 800; }
+  .sigmar       .wordmark { font-family: 'Sigmar One', cursive;           font-size: 50px; }
+  .titan        .wordmark { font-family: 'Titan One', cursive;            font-size: 50px; }
+  .kalam        .wordmark { font-family: 'Kalam', cursive;                font-size: 60px; font-weight: 700; }
+  .patrick      .wordmark { font-family: 'Patrick Hand', cursive;         font-size: 64px; }
+  .gloria       .wordmark { font-family: 'Gloria Hallelujah', cursive;    font-size: 50px; }
+  .concert      .wordmark { font-family: 'Concert One', cursive;          font-size: 56px; }
 </style>
 </head>
 <body>
 
-<div class="card fredoka"><div class="label">① Fredoka</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card caveat"><div class="label">② Caveat</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card marker"><div class="label">③ Permanent Marker</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card chewy"><div class="label">④ Chewy</div><div class="wordmark">FreelanceCal</div></div>
-<div class="divider">current (hatched)</div>
-<div class="card fredericka"><div class="label">Fredericka the Great</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card pacifico"><div class="label">① Pacifico</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card lobster"><div class="label">② Lobster</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card bangers"><div class="label">③ Bangers</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card righteous"><div class="label">④ Righteous</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card passion"><div class="label">⑤ Passion One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card bungee"><div class="label">⑥ Bungee</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card lucky"><div class="label">⑦ Luckiest Guy</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card baloo"><div class="label">⑧ Baloo 2</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card sigmar"><div class="label">⑨ Sigmar One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card titan"><div class="label">⑩ Titan One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card kalam"><div class="label">⑪ Kalam</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card patrick"><div class="label">⑫ Patrick Hand</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card gloria"><div class="label">⑬ Gloria Hallelujah</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card concert"><div class="label">⑭ Concert One</div><div class="wordmark">FreelanceCal</div></div>
 
 </body>
 </html>
