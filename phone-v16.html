@@ -188,43 +188,54 @@
                rainbow-text 6s linear 3.6s infinite;
   }
 
-  /* Intro line — "Four steps. Zero stress."  ("stress" in Fredericka script as brand accent) */
+  /* Intro line — FONT INVERSION: "Four steps. Zero" in Fredericka (playful); "stress" in boring Lexend (the thing being cancelled). */
   .splash-intro {
     margin-top: 48px;
-    font-family: 'Lexend', sans-serif;
-    font-size: 15px;
+    font-family: 'Fredericka the Great', serif;
+    font-size: 22px;
     font-weight: 400;
     color: var(--ink);
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
     opacity: 0;
     animation: fade-in 0.6s 3.4s forwards;
   }
   .splash-intro .stress {
-    font-family: 'Fredericka the Great', serif;
-    font-size: 17px;       /* closer to body 15px so it sits on the same baseline */
-    vertical-align: baseline;
-    margin-left: 2px;
-    letter-spacing: 0;
+    font-family: 'Lexend', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-left: 6px;
+    vertical-align: middle;
     position: relative;
     display: inline-block;
   }
-  /* Animated strike-through — draws left to right AFTER user has read the word.
-     Vibrant Pride red so dyslexic readers unmistakably see the cancellation. */
-  .splash-intro .stress::after {
-    content: "";
+  /* Hand-drawn pen strike — TWO overlapping curved SVG strokes drawing in like a real scribble cancel. */
+  .splash-intro .strike-svg {
     position: absolute;
-    left: -2px;
-    right: -2px;
-    top: 52%;
-    height: 3px;
-    width: 0;
-    background: #E40303;
-    border-radius: 2px;
-    animation: strike-draw 0.55s ease-out 4.4s forwards;
+    left: -6px;
+    right: -6px;
+    top: -2px;
+    width: calc(100% + 12px);
+    height: 120%;
+    overflow: visible;
+    pointer-events: none;
   }
-  @keyframes strike-draw {
-    0%   { width: 0; }
-    100% { width: calc(100% + 4px); }  /* accounts for the -2px/-2px overshoot on each side */
+  .splash-intro .strike-svg path {
+    fill: none;
+    stroke: #E40303;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+  }
+  .splash-intro .strike-svg .stroke-1 {
+    animation: strike-pen 0.35s cubic-bezier(0.4, 0, 0.6, 1) 4.4s forwards;
+  }
+  .splash-intro .strike-svg .stroke-2 {
+    animation: strike-pen 0.32s cubic-bezier(0.4, 0, 0.6, 1) 4.7s forwards;
+  }
+  @keyframes strike-pen {
+    to { stroke-dashoffset: 0; }
   }
   @keyframes soft-in {
     0%   { opacity: 0; transform: translateY(6px); }
