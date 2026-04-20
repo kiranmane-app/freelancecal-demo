@@ -6,7 +6,7 @@
 <title>FreelanceCal · fonts with colour change</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lobster&family=Bangers&family=Righteous&family=Passion+One:wght@700;900&family=Bungee&family=Luckiest+Guy&family=Baloo+2:wght@600;700;800&family=Fredoka:wght@500;600;700&family=Sigmar+One&family=Titan+One&family=Kalam:wght@700&family=Patrick+Hand&family=Gloria+Hallelujah&family=Concert+One&family=Lexend:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Ultra&family=Stint+Ultra+Expanded&family=Ranchers&family=Smokum&family=Ewert&family=Ceviche+One&family=Pacifico&family=Lobster&family=Bangers&family=Righteous&family=Passion+One:wght@900&family=Bungee&family=Luckiest+Guy&family=Baloo+2:wght@800&family=Sigmar+One&family=Titan+One&family=Kalam:wght@700&family=Patrick+Hand&family=Gloria+Hallelujah&family=Concert+One&family=Fredericka+the+Great&family=Lexend:wght@500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -20,7 +20,20 @@
   @media (prefers-color-scheme: dark) {
     body { background: #26262A; color: #FFFFFF; }
     .card { background: #1F1F23; }
+    .section-title { color: #FFFFFF; }
   }
+  .section-title {
+    font-family: 'Lexend';
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 24px 0 12px;
+    color: #1A1815;
+    opacity: 0.75;
+  }
+  .section-title:first-child { margin-top: 0; }
   .card {
     background: #FFFFFF;
     border-radius: 16px;
@@ -44,14 +57,20 @@
     animation: rainbow-text 6s linear infinite;
   }
   @keyframes rainbow-text {
-    0%   { color: #E40303; }
-    16%  { color: #FF8C00; }
-    33%  { color: #FFED00; }
-    50%  { color: #008026; }
-    66%  { color: #004DFF; }
-    83%  { color: #750787; }
+    0%   { color: #E40303; } 16%  { color: #FF8C00; } 33%  { color: #FFED00; }
+    50%  { color: #008026; } 66%  { color: #004DFF; } 83%  { color: #750787; }
     100% { color: #E40303; }
   }
+  /* Family: vintage poster / similar to Fredericka WITHOUT hatching */
+  .abril        .wordmark { font-family: 'Abril Fatface', serif;          font-size: 54px; }
+  .ultra        .wordmark { font-family: 'Ultra', serif;                  font-size: 46px; }
+  .stint        .wordmark { font-family: 'Stint Ultra Expanded', serif;   font-size: 46px; }
+  .ranchers     .wordmark { font-family: 'Ranchers', cursive;             font-size: 52px; }
+  .smokum       .wordmark { font-family: 'Smokum', cursive;               font-size: 60px; }
+  .ewert        .wordmark { font-family: 'Ewert', cursive;                font-size: 44px; }
+  .ceviche      .wordmark { font-family: 'Ceviche One', cursive;          font-size: 62px; }
+
+  /* Completely different directions */
   .pacifico     .wordmark { font-family: 'Pacifico', cursive;             font-size: 56px; }
   .lobster      .wordmark { font-family: 'Lobster', cursive;              font-size: 56px; }
   .bangers      .wordmark { font-family: 'Bangers', cursive;              font-size: 60px; letter-spacing: 0.02em; }
@@ -66,24 +85,40 @@
   .patrick      .wordmark { font-family: 'Patrick Hand', cursive;         font-size: 64px; }
   .gloria       .wordmark { font-family: 'Gloria Hallelujah', cursive;    font-size: 50px; }
   .concert      .wordmark { font-family: 'Concert One', cursive;          font-size: 56px; }
+
+  /* Reference: current Fredericka (greyed, no animation) */
+  .fredericka   .wordmark { font-family: 'Fredericka the Great', serif;   font-size: 54px; color: #888 !important; animation: none; }
 </style>
 </head>
 <body>
 
-<div class="card pacifico"><div class="label">① Pacifico</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card lobster"><div class="label">② Lobster</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card bangers"><div class="label">③ Bangers</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card righteous"><div class="label">④ Righteous</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card passion"><div class="label">⑤ Passion One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card bungee"><div class="label">⑥ Bungee</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card lucky"><div class="label">⑦ Luckiest Guy</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card baloo"><div class="label">⑧ Baloo 2</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card sigmar"><div class="label">⑨ Sigmar One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card titan"><div class="label">⑩ Titan One</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card kalam"><div class="label">⑪ Kalam</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card patrick"><div class="label">⑫ Patrick Hand</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card gloria"><div class="label">⑬ Gloria Hallelujah</div><div class="wordmark">FreelanceCal</div></div>
-<div class="card concert"><div class="label">⑭ Concert One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="section-title">Fredericka-family · vintage poster · NO hatching</div>
+<div class="card abril"><div class="label">Abril Fatface</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card ultra"><div class="label">Ultra</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card stint"><div class="label">Stint Ultra Expanded</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card ranchers"><div class="label">Ranchers</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card smokum"><div class="label">Smokum</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card ewert"><div class="label">Ewert</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card ceviche"><div class="label">Ceviche One</div><div class="wordmark">FreelanceCal</div></div>
+
+<div class="section-title">Completely new direction</div>
+<div class="card pacifico"><div class="label">Pacifico</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card lobster"><div class="label">Lobster</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card bangers"><div class="label">Bangers</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card righteous"><div class="label">Righteous</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card passion"><div class="label">Passion One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card bungee"><div class="label">Bungee</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card lucky"><div class="label">Luckiest Guy</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card baloo"><div class="label">Baloo 2</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card sigmar"><div class="label">Sigmar One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card titan"><div class="label">Titan One</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card kalam"><div class="label">Kalam</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card patrick"><div class="label">Patrick Hand</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card gloria"><div class="label">Gloria Hallelujah</div><div class="wordmark">FreelanceCal</div></div>
+<div class="card concert"><div class="label">Concert One</div><div class="wordmark">FreelanceCal</div></div>
+
+<div class="section-title">Current · Fredericka the Great (for reference)</div>
+<div class="card fredericka"><div class="label">Fredericka the Great</div><div class="wordmark">FreelanceCal</div></div>
 
 </body>
 </html>
