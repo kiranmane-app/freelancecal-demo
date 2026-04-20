@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v52</title>
+<title>Cal · Tap Fun to enter · v53</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -221,6 +221,16 @@
   @keyframes splash-cta-pulse {
     0%, 100% { transform: scale(1); background: rgba(255,255,255,0.18); }
     50%      { transform: scale(1.06); background: rgba(255,255,255,0.3); }
+  }
+
+  /* Curtain slides up when scene starts (restored from v49) */
+  .scene.started .splash-curtain {
+    animation: curtain-up 3.5s cubic-bezier(0.55, 0, 0.35, 1) 0s forwards;
+    pointer-events: none;
+  }
+  @keyframes curtain-up {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-120%); }
   }
 
   /* ===== POST-SPLASH FLEX LAYOUT — no overlap, things flow vertically ===== */
