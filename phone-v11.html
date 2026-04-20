@@ -664,9 +664,18 @@
   </div>
 
 <script>
+  // Allow forcing theme via ?theme=light or ?theme=dark (used by the compare page)
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const forceTheme = params.get('theme');
+    if (forceTheme === 'light' || forceTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', forceTheme);
+    }
+  })();
+
   // Splash is b/w (light/dark mode inverse) — no rotating palette.
   // Brand energy comes from the rainbow "FreelanceCal" wordmark (CSS animation)
-  // and the solid Pride pink CTA accent.
+  // and an inverse CTA pill.
 
   function enterApp(e) {
     const scene = document.getElementById('scene');
