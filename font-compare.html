@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Font candidates for FreelanceCal wordmark (mobile-first)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&family=Permanent+Marker&family=Chewy&family=Fredericka+the+Great&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #F7F7F6;
+    color: #1A1815;
+    padding: 20px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #26262A; color: #FFFFFF; }
+    .card { background: #1F1F23; }
+  }
+  .page-title {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.7;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    font-size: 12px;
+    opacity: 0.55;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 28px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  .card .label {
+    font-family: 'Lexend';
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 12px;
+  }
+  .card .wordmark {
+    line-height: 1;
+    word-break: break-word;
+    color: #E94E77;
+  }
+  .card.fredoka .wordmark         { font-family: 'Fredoka', sans-serif; font-size: 52px; font-weight: 600; }
+  .card.caveat .wordmark          { font-family: 'Caveat', cursive; font-size: 72px; font-weight: 700; }
+  .card.marker .wordmark          { font-family: 'Permanent Marker', cursive; font-size: 46px; }
+  .card.chewy .wordmark           { font-family: 'Chewy', cursive; font-size: 52px; }
+  .card.fredericka .wordmark      { font-family: 'Fredericka the Great', serif; font-size: 52px; color: #888; }
+  .note {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 10px;
+  }
+  .divider {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin: 24px 0 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">FreelanceCal wordmark · font candidates</div>
+<div class="page-sub">Pick by eye on your phone. Current hatched font at the bottom for comparison.</div>
+
+<div class="card fredoka">
+  <div class="label">① Fredoka · my pick</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="note">Bold, rounded, smooth. Modern friendly. Reads perfectly on mobile.</div>
+</div>
+
+<div class="card caveat">
+  <div class="label">② Caveat · hand-written brush</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="note">Organic casual handwriting. Warmer than Fredoka.</div>
+</div>
+
+<div class="card marker">
+  <div class="label">③ Permanent Marker · bold marker</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="note">Chunky playful marker. More attitude.</div>
+</div>
+
+<div class="card chewy">
+  <div class="label">④ Chewy · rounded display</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="note">Soft, bubbly, very friendly.</div>
+</div>
+
+<div class="divider">for comparison · current font</div>
+
+<div class="card fredericka">
+  <div class="label">Fredericka the Great · current (hatched)</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="note">The hatching you've been seeing on your phone.</div>
+</div>
+
+</body>
+</html>
