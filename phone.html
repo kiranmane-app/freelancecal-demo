@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v53</title>
+<title>FreelanceCal · phone v27 · thin border applied consistently (wordmark, Fun, Cal FreelanceCal, keypad)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,37 @@
 
     /* Scale factor — inner scene is designed at 1, scaled via this var */
     --scene-scale: 1;
+  }
+
+  /* All colour-changing text shares the same thin border — consistency rule. */
+  .splash-tagline .fun-heart,
+  .speech-line.two {
+    -webkit-text-stroke: 1px #1A1815;
+    paint-order: stroke fill;
+  }
+
+  /* Keypad circles — colour-changing fills get the same outline via SVG stroke */
+  .btn-rainbow {
+    stroke: #1A1815;
+    stroke-width: 1;
+  }
+
+  /* Dark-mode: swap the border colour to white across every colour-changing element */
+  :root[data-theme="dark"] .splash-wordmark,
+  :root[data-theme="dark"] .splash-tagline .fun-heart,
+  :root[data-theme="dark"] .speech-line.two {
+    -webkit-text-stroke: 1px #FFFFFF;
+    paint-order: stroke fill;
+  }
+  :root[data-theme="dark"] .btn-rainbow { stroke: #FFFFFF; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .splash-wordmark,
+    :root:not([data-theme="light"]) .splash-tagline .fun-heart,
+    :root:not([data-theme="light"]) .speech-line.two {
+      -webkit-text-stroke: 1px #FFFFFF;
+      paint-order: stroke fill;
+    }
+    :root:not([data-theme="light"]) .btn-rainbow { stroke: #FFFFFF; }
   }
 
   :root[data-theme="dark"] {
@@ -126,11 +157,11 @@
   /* ===== SPLASH ===== */
   .splash-curtain {
     position: absolute; inset: 0;
-    background: var(--splash);
+    background: var(--bg);  /* b/w inverse with light/dark mode */
     z-index: 8;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 80px 24px 120px;
+    padding: 80px 14px 120px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
@@ -143,18 +174,24 @@
   }
   .splash-wordmark {
     font-family: 'Fredericka the Great', serif;
-    font-size: 52px;
-    color: #FFFFFF;
+    font-size: 56px;
+    color: var(--r1);  /* starts at first rainbow colour, cycled by rainbow-text */
     opacity: 0;
     line-height: 1;
-    animation: soft-in 0.8s ease-out 0.6s forwards;
+    /* Thin border — 1px stroke with paint-order:stroke-fill means fill covers INSIDE half of stroke,
+       so only outer ~0.5px is visible. Crisp, thin, not scribbly. Same for ALL colour-changing text. */
+    text-shadow: none;
+    -webkit-text-stroke: 1px #1A1815;
+    paint-order: stroke fill;
+    animation: soft-in 0.8s ease-out 0.6s forwards,
+               rainbow-text 6s linear 1.4s infinite;
   }
   .splash-tagline {
-    margin-top: 14px;
+    margin-top: 32px;  /* was 18px — more breathing room under the wordmark */
     font-family: 'Lexend';
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: var(--ink);  /* inverse — dark on light, white on dark */
     letter-spacing: 0.02em;
     white-space: nowrap;
     opacity: 0;
@@ -173,13 +210,68 @@
   .splash-tagline .fun-heart {
     display: inline-block;
     font-family: 'Fredericka the Great', serif;
-    font-size: 28px;
-    color: #FFFFFF;
-    margin-left: 3px;
+    font-size: 32px;
+    color: var(--r1);  /* rainbow-cycle keeps "Fun." lively across modes */
+    margin-left: 4px;
     vertical-align: middle;
     transform-origin: center;
     opacity: 0;
-    animation: fade-in 0.4s 3.0s forwards, heartbeat 2.4s ease-in-out 3.6s infinite;
+    animation: fade-in 0.4s 3.0s forwards,
+               heartbeat 3.6s ease-in-out 3.6s infinite,
+               rainbow-text 6s linear 3.6s infinite;
+  }
+
+  /* Intro line — FONT INVERSION: "Four steps. Zero" in Fredericka (playful); "stress" in boring Lexend (the thing being cancelled). */
+  .splash-intro {
+    margin-top: 48px;
+    font-family: 'Fredericka the Great', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0;
+    opacity: 0;
+    animation: fade-in 0.6s 3.4s forwards;
+  }
+  .splash-intro .stress {
+    font-family: 'Lexend', sans-serif;
+    font-size: 17px;          /* bumped to visually match 22px Fredericka */
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-left: 6px;
+    vertical-align: baseline;  /* on same baseline as "Four steps. Zero", no lift */
+    position: relative;
+    display: inline-block;
+  }
+  /* Hand-drawn pen strike — TWO overlapping curved SVG strokes drawing in like a real scribble cancel. */
+  .splash-intro .strike-svg {
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    top: -2px;
+    width: calc(100% + 12px);
+    height: 120%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .splash-intro .strike-svg path {
+    fill: none;
+    stroke: #E40303;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+  }
+  .splash-intro .strike-svg .stroke-1 {
+    animation: strike-pen 0.4s cubic-bezier(0.4, 0, 0.6, 1) 4.4s forwards;
+  }
+  .splash-intro .strike-svg .stroke-2 {
+    animation: strike-pen 0.38s cubic-bezier(0.4, 0, 0.6, 1) 4.75s forwards;
+  }
+  .splash-intro .strike-svg .stroke-3 {
+    animation: strike-pen 0.36s cubic-bezier(0.4, 0, 0.6, 1) 5.05s forwards;
+  }
+  @keyframes strike-pen {
+    to { stroke-dashoffset: 0; }
   }
   @keyframes soft-in {
     0%   { opacity: 0; transform: translateY(6px); }
@@ -197,11 +289,11 @@
     font-family: 'Lexend';
     font-size: 14px;
     font-weight: 500;
-    color: #FFFFFF;
-    background: rgba(255,255,255,0.22);
-    padding: 14px 30px;
-    border-radius: 26px;
-    border: 1.5px solid rgba(255,255,255,0.42);
+    color: var(--bg);           /* inverse of bg — light text on dark pill (or vice versa) */
+    background: var(--ink);     /* inverse pill — dark on light mode, white on dark mode */
+    padding: 12px 28px;
+    border-radius: 24px;
+    border: none;
     letter-spacing: 0.04em;
     white-space: nowrap;
     cursor: pointer;
@@ -209,18 +301,18 @@
     opacity: 0;
     flex-shrink: 0;
     -webkit-tap-highlight-color: transparent;
-    animation: splash-cta-in 0.6s ease-out 4.0s forwards, splash-cta-pulse 3s ease-in-out 5.0s infinite;
-    transition: transform 0.15s ease, background 0.2s ease;
+    animation: splash-cta-in 0.6s ease-out 4.0s forwards,
+               splash-cta-pulse 3s ease-in-out 5.0s infinite;
+    transition: transform 0.15s ease;
   }
-  .splash-cta:hover { background: rgba(255,255,255,0.28); }
   .splash-cta:active { transform: scale(0.94); }
   @keyframes splash-cta-in {
     0%   { opacity: 0; transform: scale(0.85); }
     100% { opacity: 1; transform: scale(1); }
   }
   @keyframes splash-cta-pulse {
-    0%, 100% { transform: scale(1); background: rgba(255,255,255,0.18); }
-    50%      { transform: scale(1.06); background: rgba(255,255,255,0.3); }
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
   }
 
   /* Curtain slides up when scene starts (restored from v49) */
@@ -236,7 +328,7 @@
   /* ===== POST-SPLASH FLEX LAYOUT — no overlap, things flow vertically ===== */
   .scene-body {
     position: absolute;
-    inset: 40px 20px 36px 20px;  /* notch clearance top, CTA space bottom */
+    inset: 88px 20px 36px 20px;  /* lowered from 40px — more breathing room at top */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -260,15 +352,21 @@
     transform-origin: center;
     transform: translateY(260px) scale(0.18);
     line-height: 1.05;
+    /* Shadow pattern from landing page — subtle dark, for depth in light mode */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  :root[data-theme="dark"] .speech-line,
+  :root:not([data-theme="light"]) .speech-line {
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
   }
   .speech-line.one {
-    font-size: 34px;
+    font-size: 42px;
     color: var(--ink);
   }
   .speech-line.two {
-    font-size: 40px;
+    font-size: 28px;
     color: var(--r1);
-    margin-top: 4px;
+    margin-top: 12px;
     transform: translateY(200px) scale(0.18);
   }
   .scene.started .speech-line.one {
@@ -292,7 +390,7 @@
     100% { color: var(--r1); }
   }
 
-  /* Cal zone — middle */
+  /* Cal zone — middle. Extra bottom padding gives Cal room to pulse without touching CTA. */
   .cal-zone {
     flex: 1;
     display: flex;
@@ -302,27 +400,35 @@
     width: 100%;
     position: relative;
     min-height: 0;
-    padding: 12px 0;
+    padding: 12px 0 40px 0;  /* was 12px 0 — added 28px bottom buffer */
   }
   .cal-wrap {
-    width: 240px;
-    height: 286px;
+    width: 300px;
+    height: 358px;
     opacity: 0;
     transform: scale(0.25);
     transform-origin: center;
   }
+  /* Let the SVG paint outside its viewBox so Cal's pulse-expanded bottom doesn't get clipped */
+  .cal-wrap svg { overflow: visible; }
+  /* Pulse is applied to the FACE group only, NOT the keypad — digits never scale, never jitter, never smudge.
+     transform-origin centre-middle of the face group so scale expands equally up + down (no bottom crop). */
+  .cal-face { transform-origin: 130px 161px; transform-box: view-box; }
+  .scene.started .cal-face {
+    animation: cal-pulse 6s ease-in-out 10.7s infinite;
+  }
   .scene.started .cal-wrap {
     animation:
-      cal-materialise 2.0s cubic-bezier(0.16, 0.84, 0.4, 1) 3.8s forwards,
-      cal-idle 3.6s ease-in-out 10.7s infinite;
+      cal-materialise 2.0s cubic-bezier(0.16, 0.84, 0.4, 1) 3.8s forwards;
+    /* cal-pulse moved off .cal-wrap onto .cal-face to exclude the keypad */
   }
   @keyframes cal-materialise {
     0%   { opacity: 0; transform: scale(0.25); }
     100% { opacity: 1; transform: scale(1); }
   }
-  @keyframes cal-idle {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50%      { transform: translateY(-6px) scale(1.01); }
+  @keyframes cal-pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.03); }
   }
 
   .cal-shadow {
@@ -353,7 +459,7 @@
     50%      { width: 160px; opacity: 0.3; }
   }
 
-  /* Type + CTA zone — bottom */
+  /* Type + CTA zone — bottom. margin-top pushes CTA away from Cal's shadow. */
   .bottom-zone {
     width: 100%;
     text-align: center;
@@ -362,6 +468,7 @@
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    margin-top: 16px;
   }
   .type-wrap {
     font-family: 'Lexend';
@@ -405,15 +512,21 @@
   }
 
   .eye { transform-box: fill-box; transform-origin: center; }
-  .scene.started .eye-right { animation: blink 4.2s 12.7s infinite; }
-  .scene.started .eye-left  { animation: wink-once 0.55s 6.1s forwards, blink 4.2s 12.7s infinite; }
+  /* SINGLE clear wink at 8.7s (right after "Hi, I'm Cal" lands).
+     Wink closes tight and HOLDS for ~1s — unmistakable as a one-eye gesture, not a blink.
+     Blink cycle delayed to 17s so the wink has clear solo time. */
+  .scene.started .eye-right { animation: blink 4.8s 17s infinite; }
+  .scene.started .eye-left  { animation: wink-hold 2.2s 8.7s forwards, blink 4.8s 17s infinite; }
   @keyframes blink {
     0%, 92%, 100% { transform: scaleY(1); }
     95%, 97%      { transform: scaleY(0.12); }
   }
-  @keyframes wink-once {
-    0%, 100% { transform: scaleY(1); }
-    50%      { transform: scaleY(0.1); }
+  /* wink-hold over 2.2s: close fast, HOLD closed for ~1s, open fast. Unambiguous wink. */
+  @keyframes wink-hold {
+    0%        { transform: scaleY(1); }       /* 0.0s — open */
+    15%       { transform: scaleY(0.05); }    /* 0.33s — fully closed */
+    60%       { transform: scaleY(0.05); }    /* 1.32s — still closed (1s hold) */
+    80%, 100% { transform: scaleY(1); }       /* 1.76s — open and stay */
   }
 
   .mouth-open { opacity: 0; }
@@ -441,7 +554,7 @@
     50%  { fill: var(--r4); } 66% { fill: var(--r5); } 83% { fill: var(--r6); }
     100% { fill: var(--r1); }
   }
-  .btn-rainbow { animation: rainbow 5s linear infinite; }
+  .btn-rainbow { animation: rainbow 15s linear infinite; }
   .btn-rainbow.d1 { animation-delay: -0.4s; }
   .btn-rainbow.d2 { animation-delay: -0.8s; }
   .btn-rainbow.d3 { animation-delay: -1.2s; }
@@ -540,7 +653,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">Cal · v50 · Responsive + Dark Mode</div>
+    <div class="title">FreelanceCal · phone v27 · thin border on all colour-changing text</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
@@ -557,8 +670,9 @@
           <div class="splash-content">
             <div class="splash-wordmark">FreelanceCal</div>
             <div class="splash-tagline"><span class="splash-type">Less work, more </span><span class="fun-heart">Fun.</span></div>
+            <div class="splash-intro">Four steps. Zero <span class="stress">stress.<svg class="strike-svg" viewBox="0 0 100 30" preserveAspectRatio="none"><path class="stroke-1" d="M1,17 Q28,9 58,15 T99,13"/><path class="stroke-2" d="M1,15 Q32,21 66,13 T99,18"/><path class="stroke-3" d="M1,19 Q40,14 70,20 T99,15"/></svg></span></div>
           </div>
-          <button class="splash-cta" type="button" onclick="enterApp(event)">Ready for fun?</button>
+          <button class="splash-cta" type="button" onclick="enterApp(event)">Say hi to Cal</button>
         </div>
 
         <!-- POST-SPLASH SCENE — flex layout, no overlap -->
@@ -573,19 +687,23 @@
           <!-- Cal zone -->
           <div class="cal-zone">
             <div class="cal-wrap">
-              <svg viewBox="0 0 260 310" width="240" height="286" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                <path stroke="var(--cal-stroke)" stroke-width="2.8" fill="var(--cal-fill)" stroke-linejoin="round"
-                      d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
-                <rect fill="var(--cal-fill)" stroke="var(--cal-stroke)" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
-                <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M82 64 Q98 54 114 64"/>
-                <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M146 64 Q162 54 178 64"/>
-                <circle class="eye eye-left"  fill="var(--cal-stroke)" cx="100" cy="84" r="9"/>
-                <circle class="eye eye-right" fill="var(--cal-stroke)" cx="160" cy="84" r="9"/>
-                <circle fill="var(--cal-fill)" cx="102" cy="82" r="3"/>
-                <circle fill="var(--cal-fill)" cx="162" cy="82" r="3"/>
-                <path class="mouth-closed" stroke="var(--cal-stroke)" stroke-width="2.8" fill="none" stroke-linecap="round" d="M112 108 Q130 120 148 108"/>
-                <ellipse class="mouth-open" cx="130" cy="112" rx="10" ry="8" fill="var(--cal-stroke)"/>
+              <svg viewBox="0 0 260 310" width="300" height="358" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <!-- FACE GROUP — body outline, head, brows, eyes, mouth. Pulsing applies HERE only. -->
+                <g class="cal-face">
+                  <path stroke="var(--cal-stroke)" stroke-width="2.8" fill="var(--cal-fill)" stroke-linejoin="round"
+                        d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+                  <rect fill="var(--cal-fill)" stroke="var(--cal-stroke)" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
+                  <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M82 64 Q98 54 114 64"/>
+                  <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M146 64 Q162 54 178 64"/>
+                  <circle class="eye eye-left"  fill="var(--cal-stroke)" cx="100" cy="84" r="9"/>
+                  <circle class="eye eye-right" fill="var(--cal-stroke)" cx="160" cy="84" r="9"/>
+                  <circle fill="var(--cal-fill)" cx="100" cy="82" r="3"/>
+                  <circle fill="var(--cal-fill)" cx="160" cy="82" r="3"/>
+                  <path class="mouth-closed" stroke="var(--cal-stroke)" stroke-width="2.8" fill="none" stroke-linecap="round" d="M112 108 Q130 120 148 108"/>
+                  <ellipse class="mouth-open" cx="130" cy="112" rx="10" ry="8" fill="var(--cal-stroke)"/>
+                </g>
 
+                <!-- KEYPAD GROUP — NOT inside cal-face. Does NOT scale with pulse. Digits stay crisp + stable. -->
                 <g><circle class="btn-rainbow"    cx="88"  cy="166" r="14"/><text x="88"  y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">1</text></g>
                 <g><circle class="btn-rainbow d1" cx="130" cy="166" r="14"/><text x="130" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">2</text></g>
                 <g><circle class="btn-rainbow d2" cx="172" cy="166" r="14"/><text x="172" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">3</text></g>
@@ -600,11 +718,8 @@
             <div class="cal-shadow"></div>
           </div>
 
-          <!-- Bottom zone — typewriter + CTA -->
+          <!-- Bottom zone — CTA only (tagline removed; it's already on the splash) -->
           <div class="bottom-zone">
-            <div class="type-wrap">
-              <span class="type-line">Less work, more </span><span class="fun-word">Fun.</span>
-            </div>
             <div class="cta">Let's play →</div>
           </div>
 
@@ -623,9 +738,18 @@
   </div>
 
 <script>
-  const palette = ['#E94E77', '#F59E0B', '#0EA5E9', '#8B5CF6', '#10B981', '#0D9488', '#EC4899'];
-  const pick = palette[Math.floor(Math.random() * palette.length)];
-  document.documentElement.style.setProperty('--splash', pick);
+  // Allow forcing theme via ?theme=light or ?theme=dark (used by the compare page)
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const forceTheme = params.get('theme');
+    if (forceTheme === 'light' || forceTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', forceTheme);
+    }
+  })();
+
+  // Splash is b/w (light/dark mode inverse) — no rotating palette.
+  // Brand energy comes from the rainbow "FreelanceCal" wordmark (CSS animation)
+  // and an inverse CTA pill.
 
   function enterApp(e) {
     const scene = document.getElementById('scene');
@@ -635,14 +759,12 @@
     }
   }
 
-  // Defensive: attach listeners via JS on the whole splash curtain
+  // Normal splash flow — user presses CTA or curtain, scene starts, curtain slides up
   document.addEventListener('DOMContentLoaded', function () {
     const curtain = document.getElementById('splashCurtain');
     if (curtain) {
       curtain.addEventListener('click', enterApp);
-      curtain.addEventListener('touchend', function (e) {
-        enterApp(e);
-      }, { passive: true });
+      curtain.addEventListener('touchend', function (e) { enterApp(e); }, { passive: true });
     }
   });
 
@@ -651,8 +773,12 @@
     const clone = scene.cloneNode(true);
     clone.classList.remove('started');
     scene.parentNode.replaceChild(clone, scene);
-    const newPick = palette[Math.floor(Math.random() * palette.length)];
-    document.documentElement.style.setProperty('--splash', newPick);
+    // Re-attach splash listeners since DOM was replaced
+    const newCurtain = clone.querySelector('#splashCurtain') || document.getElementById('splashCurtain');
+    if (newCurtain) {
+      newCurtain.addEventListener('click', enterApp);
+      newCurtain.addEventListener('touchend', function (e) { enterApp(e); }, { passive: true });
+    }
   }
 
   function toggleTheme() {
