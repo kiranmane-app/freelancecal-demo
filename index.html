@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v56</title>
+<title>Cal · Tap Fun to enter · v57</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -517,6 +517,7 @@
 
   /* Desktop hero — hidden on mobile/tablet by default */
   .desktop-hero { display: none; }
+  .desktop-decor { display: none; }
 
   /* Tablet — scale phone up so it fills the viewport better */
   @media (min-width: 768px) {
@@ -527,41 +528,48 @@
     :root { --scene-scale: 1.3; }
   }
 
-  /* Desktop — two-column hero layout. Raised to 1400px so iPad Pro
-     landscape (1366px) stays in tablet view with the phone mockup. */
+  /* ===== DESKTOP — Lemonade-pattern centered hero, NO phone mockup =====
+     Raised to 1400px so iPad Pro landscape (1366px) keeps the phone view. */
   @media (min-width: 1400px) {
     :root { --scene-scale: 1; }
-    .phone-stage {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 56px;
-      padding: 40px 64px;
-      max-width: 1500px;
-      margin: 0 auto;
-      width: 100%;
-      align-items: center;
-    }
+
+    /* Phone + notch hidden on desktop landing. Shown when flow plays. */
+    body:not(.flow-active) .phone { display: none; }
+
     .top-bar { padding: 16px 40px; }
-    .desktop-hero {
+
+    .phone-stage {
+      padding: 60px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hero — centered column, Lemonade style */
+    body:not(.flow-active) .desktop-hero {
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
-      text-align: left;
-      min-width: 0;
-      overflow-wrap: break-word;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      padding: 20px;
     }
+
     .desktop-hero .hero-wordmark {
       font-family: 'Fredericka the Great', serif;
-      font-size: clamp(48px, 6.5vw, 88px);
-      line-height: 1.05;
+      font-size: clamp(72px, 9vw, 140px);
+      line-height: 0.98;
       color: var(--ink);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       letter-spacing: -0.01em;
-      word-break: break-word;
+      word-break: keep-all;
     }
     .desktop-hero .hero-tag {
       font-family: 'Lexend', sans-serif;
-      font-size: clamp(20px, 1.8vw, 28px);
+      font-size: clamp(22px, 2vw, 32px);
       font-weight: 400;
       color: var(--ink-soft);
       margin-bottom: 24px;
@@ -578,26 +586,77 @@
     }
     .desktop-hero .hero-desc {
       font-family: 'Lexend', sans-serif;
-      font-size: clamp(15px, 1.1vw, 17px);
+      font-size: clamp(15px, 1.15vw, 18px);
       font-weight: 400;
       color: var(--ink-soft);
-      max-width: 480px;
+      max-width: 560px;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin: 0 auto 40px;
     }
+    .desktop-hero .hero-cta {
+      background: #E94E77;
+      color: #FFFFFF;
+      border: none;
+      padding: 18px 48px;
+      border-radius: 32px;
+      font-family: 'Lexend', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(233, 78, 119, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      margin-bottom: 20px;
+      animation: splash-cta-pulse 3s ease-in-out infinite;
+    }
+    .desktop-hero .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(233, 78, 119, 0.35);
+    }
+    .desktop-hero .hero-cta:active { transform: translateY(0) scale(0.97); }
+
     .desktop-hero .hero-hint {
       font-family: 'Lexend', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: var(--ink-faint);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
+
+    /* Grey line-art decorations flanking the hero */
+    body:not(.flow-active) .desktop-decor {
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .desktop-decor.left  { left: 5%;  }
+    .desktop-decor.right { right: 5%; }
+    .desktop-decor svg { width: clamp(180px, 18vw, 280px); height: auto; }
+
+    /* When flow is active on desktop — phone shown without frame (full-bleed) */
+    body.flow-active .phone-stage {
+      padding: 24px;
+    }
+    body.flow-active .phone {
+      border: none;
+      box-shadow: none;
+      border-radius: 24px;
+      width: min(440px, 100%);
+      height: min(820px, 90vh);
+      transform: scale(1);
+    }
+    body.flow-active .notch { display: none; }
   }
 
   /* Widescreen — bigger hero text */
   @media (min-width: 1700px) {
-    .desktop-hero .hero-wordmark { font-size: clamp(88px, 7vw, 110px); }
+    .desktop-hero .hero-wordmark { font-size: clamp(110px, 8vw, 160px); }
+    .desktop-decor svg { width: clamp(220px, 18vw, 320px); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -612,7 +671,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">Cal · v56 · Responsive + Dark Mode</div>
+    <div class="title">Cal · v57 · Desktop Landing (Lemonade pattern)</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
@@ -620,11 +679,56 @@
   </div>
 
   <div class="phone-stage">
+
+    <!-- Desktop landing — Lemonade pattern: centered hero + grey line-art flanking -->
+    <div class="desktop-decor left" aria-hidden="true">
+      <svg viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="var(--ink)" stroke-width="2.8" fill="none" stroke-linejoin="round"
+              d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+        <rect fill="none" stroke="var(--ink)" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
+        <circle fill="var(--ink)" cx="100" cy="84" r="7"/>
+        <circle fill="var(--ink)" cx="160" cy="84" r="7"/>
+        <path stroke="var(--ink)" stroke-width="2.8" fill="none" stroke-linecap="round" d="M112 108 Q130 120 148 108"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="250" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="250" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="250" r="14"/>
+      </svg>
+    </div>
+
+    <div class="desktop-decor right" aria-hidden="true">
+      <svg viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
+        <path stroke="var(--ink)" stroke-width="2.8" fill="none" stroke-linejoin="round"
+              d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+        <rect fill="none" stroke="var(--ink)" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
+        <path stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M82 64 Q98 54 114 64"/>
+        <path stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M146 64 Q162 54 178 64"/>
+        <circle fill="var(--ink)" cx="100" cy="84" r="7"/>
+        <circle fill="var(--ink)" cx="160" cy="84" r="7"/>
+        <ellipse stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="112" rx="10" ry="7"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="166" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="208" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="88"  cy="250" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="130" cy="250" r="14"/>
+        <circle stroke="var(--ink)" stroke-width="2" fill="none" cx="172" cy="250" r="14"/>
+      </svg>
+    </div>
+
     <div class="desktop-hero">
       <div class="hero-wordmark">FreelanceCal</div>
       <p class="hero-tag">Less work, more <span class="fun">Fun.</span></p>
-      <p class="hero-desc">A billing and companion app for freelancers. Four steps — enter rate, send estimate, raise invoice, get paid. Starting with photo/stills crew; commercial and universal calculators coming next.</p>
-      <p class="hero-hint">Tap the phone → to meet Cal</p>
+      <p class="hero-desc">A billing and companion app for freelancers. Four steps — enter rate, send estimate, raise invoice, get paid. Starting with photo and stills crew; commercial and universal calculators coming next.</p>
+      <button class="hero-cta" type="button" onclick="startDesktopFlow()">Ready for fun?</button>
+      <p class="hero-hint">Press to meet Cal</p>
     </div>
     <div class="phone">
       <div class="notch"></div>
@@ -709,7 +813,19 @@
     const scene = document.getElementById('scene');
     if (scene && !scene.classList.contains('started')) {
       scene.classList.add('started');
-      console.log('[FreelanceCal v52] scene started');
+      console.log('[FreelanceCal v57] scene started');
+    }
+  }
+
+  // Desktop landing: pink CTA fades hero, reveals Cal scene full-bleed
+  function startDesktopFlow() {
+    document.body.classList.add('flow-active');
+    // Bypass the splash curtain — skip straight to the scene
+    const curtain = document.getElementById('splashCurtain');
+    if (curtain) curtain.style.display = 'none';
+    const scene = document.getElementById('scene');
+    if (scene && !scene.classList.contains('started')) {
+      scene.classList.add('started');
     }
   }
 
@@ -725,10 +841,20 @@
   });
 
   function replay() {
+    document.body.classList.remove('flow-active');
     const scene = document.getElementById('scene');
     const clone = scene.cloneNode(true);
     clone.classList.remove('started');
     scene.parentNode.replaceChild(clone, scene);
+    // Re-show the splash curtain (was hidden on desktop flow start)
+    const curtain = document.getElementById('splashCurtain');
+    if (curtain) curtain.style.display = '';
+    // Re-wire click since DOM was cloned
+    const newCurtain = document.getElementById('splashCurtain');
+    if (newCurtain) {
+      newCurtain.addEventListener('click', enterApp);
+      newCurtain.addEventListener('touchend', function (e) { enterApp(e); }, { passive: true });
+    }
     const newPick = palette[Math.floor(Math.random() * palette.length)];
     document.documentElement.style.setProperty('--splash', newPick);
   }
