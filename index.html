@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Cal · Tap Fun to enter · v51</title>
+<title>Cal · Tap Fun to enter · v52</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -131,6 +131,8 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 80px 24px 120px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .splash-content {
     text-align: center;
@@ -540,13 +542,13 @@
       <div class="notch"></div>
       <div class="scene" id="scene">
 
-        <!-- SPLASH CURTAIN -->
-        <div class="splash-curtain">
+        <!-- SPLASH CURTAIN — entire curtain is clickable, not just the button -->
+        <div class="splash-curtain" id="splashCurtain" onclick="enterApp(event)">
           <div class="splash-content">
             <div class="splash-wordmark">FreelanceCal</div>
             <div class="splash-tagline"><span class="splash-type">Less work, more </span><span class="fun-heart">Fun.</span></div>
           </div>
-          <button class="splash-cta" onclick="enterApp(event)">Ready for fun?</button>
+          <button class="splash-cta" type="button" onclick="enterApp(event)">Ready for fun?</button>
         </div>
 
         <!-- POST-SPLASH SCENE — flex layout, no overlap -->
@@ -616,20 +618,22 @@
   document.documentElement.style.setProperty('--splash', pick);
 
   function enterApp(e) {
-    if (e) e.stopPropagation();
     const scene = document.getElementById('scene');
-    if (scene) scene.classList.add('started');
+    if (scene && !scene.classList.contains('started')) {
+      scene.classList.add('started');
+      console.log('[FreelanceCal v52] scene started');
+    }
   }
 
-  // Defensive: attach listener via JS too, for iOS Safari robustness
+  // Defensive: attach listeners via JS on the whole splash curtain
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.splash-cta').forEach(function (btn) {
-      btn.addEventListener('click', enterApp);
-      btn.addEventListener('touchend', function (e) {
-        e.preventDefault();
+    const curtain = document.getElementById('splashCurtain');
+    if (curtain) {
+      curtain.addEventListener('click', enterApp);
+      curtain.addEventListener('touchend', function (e) {
         enterApp(e);
-      }, { passive: false });
-    });
+      }, { passive: true });
+    }
   });
 
   function replay() {
