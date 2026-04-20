@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cal · Tap Fun to enter · v49</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cal · Tap Fun to enter · v50</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,51 +15,99 @@
     --ink-faint: rgba(26, 24, 21, 0.4);
     --card: #FFFFFF;
     --divider: rgba(26, 24, 21, 0.1);
+    --cal-fill: #F7F7F6;
+    --cal-stroke: #1A1815;
     --splash: #E94E77;
     --r1: #E94E77; --r2: #F59E0B; --r3: #FBBF24;
     --r4: #10B981; --r5: #0EA5E9; --r6: #8B5CF6;
+
+    /* Scale factor — inner scene is designed at 1, scaled via this var */
+    --scene-scale: 1;
   }
+
+  :root[data-theme="dark"] {
+    --bg: #26262A;
+    --ink: #FFFFFF;
+    --ink-soft: rgba(255, 255, 255, 0.78);
+    --ink-faint: rgba(255, 255, 255, 0.55);
+    --card: #1F1F23;
+    --divider: rgba(255, 255, 255, 0.1);
+    --cal-fill: #26262A;
+    --cal-stroke: #FFFFFF;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #26262A;
+      --ink: #FFFFFF;
+      --ink-soft: rgba(255, 255, 255, 0.78);
+      --ink-faint: rgba(255, 255, 255, 0.55);
+      --card: #1F1F23;
+      --divider: rgba(255, 255, 255, 0.1);
+      --cal-fill: #26262A;
+      --cal-stroke: #FFFFFF;
+    }
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
   body {
     background: var(--bg);
     color: var(--ink);
     font-family: 'Lexend', sans-serif;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
+
   .top-bar {
-    padding: 16px 24px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--divider);
+    flex-shrink: 0;
+    gap: 8px;
   }
   .top-bar .title {
-    font-size: 12px; font-weight: 500;
+    font-size: 11px; font-weight: 500;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-soft);
   }
+  .controls { display: flex; gap: 8px; }
   .btn {
     background: var(--ink); color: var(--bg);
-    border: none; padding: 8px 16px; border-radius: 20px;
+    border: none; padding: 8px 14px; border-radius: 20px;
     font-family: 'Lexend'; font-size: 12px; font-weight: 500;
-    cursor: pointer;
+    cursor: pointer; white-space: nowrap;
+  }
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    border: 1.5px solid var(--divider);
   }
 
   .phone-stage {
     flex: 1;
     display: flex; align-items: center; justify-content: center;
-    padding: 32px 16px;
+    padding: 16px;
+    min-height: 0;
   }
+
+  /* Phone — fixed internal dimensions, but scaled via --scene-scale to fit viewport */
   .phone {
-    width: 390px; height: 760px;
-    max-height: calc(100vh - 140px);
+    width: 390px;
+    height: 760px;
     background: var(--bg);
     border: 12px solid var(--ink);
     border-radius: 48px;
-    position: relative; overflow: hidden;
+    position: relative;
+    overflow: hidden;
     box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    transform: scale(var(--scene-scale));
+    transform-origin: center center;
+    flex-shrink: 0;
   }
   .notch {
     position: absolute; top: 0; left: 50%;
@@ -73,26 +121,28 @@
 
   .scene { position: absolute; inset: 0; overflow: hidden; }
 
-  /* ===== SPLASH — plays on page load ===== */
+  /* ===== SPLASH ===== */
   .splash-curtain {
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 100%;
+    position: absolute; inset: 0;
     background: var(--splash);
     z-index: 8;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 24px 120px;
   }
-
   .splash-content {
-    position: absolute;
-    top: 45%;
-    left: 0; right: 0;
     text-align: center;
-    transform: translateY(-50%);
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100%;
   }
   .splash-wordmark {
     font-family: 'Fredericka the Great', serif;
     font-size: 52px;
     color: #FFFFFF;
     opacity: 0;
+    line-height: 1;
     animation: soft-in 0.8s ease-out 0.6s forwards;
   }
   .splash-tagline {
@@ -114,15 +164,11 @@
     vertical-align: middle;
     animation: type-splash 1.5s steps(16, end) 1.4s forwards;
   }
-  @keyframes type-splash {
-    0%   { width: 0; }
-    100% { width: 16ch; }
-  }
-  /* Fun — just emphasised tagline text, not a button */
+  @keyframes type-splash { 0% { width: 0; } 100% { width: 16ch; } }
+
   .splash-tagline .fun-heart {
     display: inline-block;
     font-family: 'Fredericka the Great', serif;
-    font-style: normal;
     font-size: 28px;
     color: #FFFFFF;
     margin-left: 3px;
@@ -140,14 +186,8 @@
     50%      { transform: scale(1.12); }
   }
   @keyframes fade-in { to { opacity: 1; } }
-  @keyframes fade-out { to { opacity: 0; } }
 
-  /* "Ready for fun?" button — this is the actual CTA */
   .splash-cta {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.9);
     font-family: 'Lexend';
     font-size: 14px;
     font-weight: 500;
@@ -161,49 +201,59 @@
     white-space: nowrap;
     cursor: pointer;
     opacity: 0;
+    flex-shrink: 0;
     animation: splash-cta-in 0.6s ease-out 4.0s forwards, splash-cta-pulse 3s ease-in-out 5.0s infinite;
     transition: transform 0.15s ease, background 0.2s ease;
   }
   .splash-cta:hover { background: rgba(255,255,255,0.28); }
-  .splash-cta:active { transform: translateX(-50%) scale(0.94); }
+  .splash-cta:active { transform: scale(0.94); }
   @keyframes splash-cta-in {
-    0%   { opacity: 0; transform: translateX(-50%) scale(0.85); }
-    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    0%   { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
   }
   @keyframes splash-cta-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); background: rgba(255,255,255,0.18); }
-    50%      { transform: translateX(-50%) scale(1.06); background: rgba(255,255,255,0.3); }
+    0%, 100% { transform: scale(1); background: rgba(255,255,255,0.18); }
+    50%      { transform: scale(1.06); background: rgba(255,255,255,0.3); }
   }
 
-  /* ===== EVERYTHING BELOW ONLY PLAYS AFTER USER CLICKS FUN =====
-     Triggered by .scene.started class (click time = T=0 for all downstream delays) */
-
-  /* Curtain slide */
-  .scene.started .splash-curtain {
-    animation: curtain-up 3.5s cubic-bezier(0.55, 0, 0.35, 1) 0s forwards;
-  }
-  @keyframes curtain-up {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(-120%); }
-  }
-
-  /* Charcoal wordmark + tagline removed — brand was showing up 3 times, redundant */
-
-  /* Speech emerging from mouth */
-  .speech-line {
+  /* ===== POST-SPLASH FLEX LAYOUT — no overlap, things flow vertically ===== */
+  .scene-body {
     position: absolute;
-    left: 0; right: 0;
-    text-align: center;
-    font-family: 'Fredericka the Great', serif;
-    font-size: 40px;
-    z-index: 5;
-    opacity: 0;
-    transform-origin: center;
-    letter-spacing: 0.01em;
-    transform: translateY(330px) scale(0.18);
+    inset: 40px 20px 36px 20px;  /* notch clearance top, CTA space bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 4;
+    pointer-events: none;
   }
-  .speech-line.one  { top: 80px; }
-  .speech-line.two  { top: 140px; color: var(--r1); transform: translateY(270px) scale(0.18); }
+
+  /* Speech zone — top region */
+  .speech-zone {
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    min-height: 0;
+  }
+  .speech-line {
+    display: block;
+    font-family: 'Fredericka the Great', serif;
+    opacity: 0;
+    letter-spacing: 0.01em;
+    transform-origin: center;
+    transform: translateY(260px) scale(0.18);
+    line-height: 1.05;
+  }
+  .speech-line.one {
+    font-size: 34px;
+    color: var(--ink);
+  }
+  .speech-line.two {
+    font-size: 40px;
+    color: var(--r1);
+    margin-top: 4px;
+    transform: translateY(200px) scale(0.18);
+  }
   .scene.started .speech-line.one {
     animation: word-emit 1.8s cubic-bezier(0.16, 1, 0.3, 1) 6.7s forwards;
   }
@@ -212,11 +262,11 @@
                rainbow-text 6s linear 10.3s infinite;
   }
   @keyframes word-emit {
-    0%   { opacity: 0; transform: translateY(330px) scale(0.18); }
+    0%   { opacity: 0; transform: translateY(260px) scale(0.18); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   @keyframes word-emit-two {
-    0%   { opacity: 0; transform: translateY(270px) scale(0.18); }
+    0%   { opacity: 0; transform: translateY(200px) scale(0.18); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   @keyframes rainbow-text {
@@ -225,18 +275,85 @@
     100% { color: var(--r1); }
   }
 
-  /* Typewriter tagline + Fun heartbeat at bottom */
-  .type-wrap {
+  /* Cal zone — middle */
+  .cal-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    min-height: 0;
+    padding: 12px 0;
+  }
+  .cal-wrap {
+    width: 240px;
+    height: 286px;
+    opacity: 0;
+    transform: scale(0.25);
+    transform-origin: center;
+  }
+  .scene.started .cal-wrap {
+    animation:
+      cal-materialise 2.0s cubic-bezier(0.16, 0.84, 0.4, 1) 3.8s forwards,
+      cal-idle 3.6s ease-in-out 10.7s infinite;
+  }
+  @keyframes cal-materialise {
+    0%   { opacity: 0; transform: scale(0.25); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes cal-idle {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-6px) scale(1.01); }
+  }
+
+  .cal-shadow {
     position: absolute;
-    bottom: 110px;
-    left: 0; right: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 16px;
+    background: radial-gradient(ellipse at center, rgba(26,24,21,0.18) 0%, rgba(26,24,21,0) 70%);
+    opacity: 0;
+    z-index: 1;
+  }
+  :root[data-theme="dark"] .cal-shadow,
+  :root:not([data-theme="light"]) .cal-shadow {
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 70%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .cal-shadow {
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 70%);
+    }
+  }
+  .scene.started .cal-shadow {
+    animation: fade-in 1.5s 4.7s forwards, shadow-pulse 3.6s ease-in-out 10.7s infinite;
+  }
+  @keyframes shadow-pulse {
+    0%, 100% { width: 180px; opacity: 0.45; }
+    50%      { width: 160px; opacity: 0.3; }
+  }
+
+  /* Type + CTA zone — bottom */
+  .bottom-zone {
+    width: 100%;
     text-align: center;
-    z-index: 5;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .type-wrap {
     font-family: 'Lexend';
     font-size: 15px;
     font-weight: 500;
     color: var(--ink);
     letter-spacing: 0.02em;
+    line-height: 1.3;
+    min-height: 24px;
   }
   .type-line {
     display: inline-block;
@@ -261,37 +378,13 @@
     margin-left: 4px;
     opacity: 0;
     transform-origin: center;
+    line-height: 1;
   }
   .scene.started .fun-word {
     animation:
       fade-in 0.5s 12.3s forwards,
       heartbeat 2.4s ease-in-out 12.8s infinite,
       rainbow-text 6s linear 13.0s infinite;
-  }
-
-  /* Cal */
-  .cal-wrap {
-    position: absolute;
-    bottom: 180px;
-    left: 50%;
-    width: 260px;
-    height: 310px;
-    transform: translateX(-50%) scale(0.25);
-    opacity: 0;
-    z-index: 3;
-  }
-  .scene.started .cal-wrap {
-    animation:
-      cal-materialise 2.0s cubic-bezier(0.16, 0.84, 0.4, 1) 3.8s forwards,
-      cal-idle 3.6s ease-in-out 10.7s infinite;
-  }
-  @keyframes cal-materialise {
-    0%   { opacity: 0; transform: translateX(-50%) scale(0.25); }
-    100% { opacity: 1; transform: translateX(-50%) scale(1); }
-  }
-  @keyframes cal-idle {
-    0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-    50%      { transform: translateX(-50%) translateY(-6px) scale(1.01); }
   }
 
   .eye { transform-box: fill-box; transform-origin: center; }
@@ -306,7 +399,6 @@
     50%      { transform: scaleY(0.1); }
   }
 
-  /* Mouth lip-sync — two cycles, one per speech line */
   .mouth-open { opacity: 0; }
   .scene.started .mouth-closed {
     animation: lip-cycle-closed 1.5s ease-in-out 6.7s forwards,
@@ -327,7 +419,6 @@
     25%, 50%, 75% { opacity: 0; }
   }
 
-  /* Rainbow button cycle */
   @keyframes rainbow {
     0%   { fill: var(--r1); } 16% { fill: var(--r2); } 33% { fill: var(--r3); }
     50%  { fill: var(--r4); } 66% { fill: var(--r5); } 83% { fill: var(--r6); }
@@ -343,26 +434,6 @@
   .btn-rainbow.d7 { animation-delay: -2.8s; }
   .btn-rainbow.d8 { animation-delay: -3.2s; }
 
-  .cal-shadow {
-    position: absolute;
-    bottom: 170px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 180px;
-    height: 20px;
-    background: radial-gradient(ellipse at center, rgba(26,24,21,0.18) 0%, rgba(26,24,21,0) 70%);
-    opacity: 0;
-    z-index: 2;
-  }
-  .scene.started .cal-shadow {
-    animation: fade-in 1.5s 4.7s forwards, shadow-pulse 3.6s ease-in-out 10.7s infinite;
-  }
-  @keyframes shadow-pulse {
-    0%, 100% { width: 180px; opacity: 0.45; }
-    50%      { width: 160px; opacity: 0.3; }
-  }
-
-  /* Confetti — fires after typewriter completes */
   .confetti {
     position: absolute;
     width: 8px; height: 8px;
@@ -381,12 +452,7 @@
     100% { opacity: 0; transform: translate(var(--dx), -80px) rotate(360deg); }
   }
 
-  /* Final CTA */
   .cta {
-    position: absolute;
-    bottom: 48px;
-    left: 50%;
-    transform: translateX(-50%);
     background: var(--ink);
     color: var(--bg);
     padding: 10px 22px;
@@ -399,25 +465,69 @@
     z-index: 5;
     opacity: 0;
     cursor: pointer;
+    pointer-events: auto;
+    flex-shrink: 0;
   }
   .scene.started .cta {
     animation: fade-in 0.8s 13.3s forwards;
   }
 
+  /* Responsive scaling — phone stays at 390x760, scaled to fit viewport */
+  @media (max-height: 900px) {
+    :root { --scene-scale: 0.95; }
+  }
+  @media (max-height: 820px) {
+    :root { --scene-scale: 0.88; }
+  }
+  @media (max-height: 760px) {
+    :root { --scene-scale: 0.82; }
+  }
+  @media (max-height: 700px) {
+    :root { --scene-scale: 0.75; }
+  }
+  @media (max-height: 640px) {
+    :root { --scene-scale: 0.68; }
+  }
+  @media (max-width: 420px) and (max-height: 900px) {
+    :root { --scene-scale: 0.88; }
+  }
+  @media (max-width: 420px) and (max-height: 820px) {
+    :root { --scene-scale: 0.82; }
+  }
+  @media (max-width: 420px) and (max-height: 760px) {
+    :root { --scene-scale: 0.76; }
+  }
+
+  /* Tablet — let the phone be bigger, give it room */
+  @media (min-width: 768px) and (min-height: 900px) {
+    :root { --scene-scale: 1; }
+    .phone-stage { padding: 40px; }
+  }
+
+  /* Desktop — phone centered with generous margins */
+  @media (min-width: 1200px) {
+    :root { --scene-scale: 1; }
+    .phone-stage { padding: 60px; }
+    .top-bar { padding: 16px 40px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; }
     .splash-curtain { display: none; }
-    .cal-wrap { opacity: 1; transform: translateX(-50%) scale(1); }
+    .cal-wrap { opacity: 1; transform: scale(1); }
     .speech-line { opacity: 1; transform: translateY(0) scale(1); }
     .type-line { width: 16ch; }
-    .fun-word, .wordmark, .tagline, .cta, .cal-shadow { opacity: 1; }
+    .fun-word, .cta, .cal-shadow { opacity: 1; }
   }
 </style>
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">Cal · tap Fun to enter · v49</div>
-    <button class="btn" onclick="replay()">Replay</button>
+    <div class="title">Cal · v50 · Responsive + Dark Mode</div>
+    <div class="controls">
+      <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
+      <button class="btn" onclick="replay()">Replay</button>
+    </div>
   </div>
 
   <div class="phone-stage">
@@ -434,44 +544,53 @@
           <button class="splash-cta" onclick="enterApp(event)">Ready for fun?</button>
         </div>
 
-        <div class="cal-shadow"></div>
+        <!-- POST-SPLASH SCENE — flex layout, no overlap -->
+        <div class="scene-body">
 
-        <!-- CAL -->
-        <div class="cal-wrap">
-          <svg viewBox="0 0 260 310" width="260" height="310" xmlns="http://www.w3.org/2000/svg">
-            <path stroke="#1A1815" stroke-width="2.8" fill="#F7F7F6" stroke-linejoin="round"
-                  d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
-            <rect fill="#F7F7F6" stroke="#1A1815" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
-            <path stroke="#1A1815" stroke-width="2.6" stroke-linecap="round" fill="none" d="M82 64 Q98 54 114 64"/>
-            <path stroke="#1A1815" stroke-width="2.6" stroke-linecap="round" fill="none" d="M146 64 Q162 54 178 64"/>
-            <circle class="eye eye-left"  fill="#1A1815" cx="100" cy="84" r="9"/>
-            <circle class="eye eye-right" fill="#1A1815" cx="160" cy="84" r="9"/>
-            <circle fill="#F7F7F6" cx="102" cy="82" r="3"/>
-            <circle fill="#F7F7F6" cx="162" cy="82" r="3"/>
-            <path class="mouth-closed" stroke="#1A1815" stroke-width="2.8" fill="none" stroke-linecap="round" d="M112 108 Q130 120 148 108"/>
-            <ellipse class="mouth-open" cx="130" cy="112" rx="10" ry="8" fill="#1A1815"/>
+          <!-- Speech zone -->
+          <div class="speech-zone">
+            <span class="speech-line one">Hi, I'm Cal.</span>
+            <span class="speech-line two">FreelanceCal.</span>
+          </div>
 
-            <g><circle class="btn-rainbow"    cx="88"  cy="166" r="14"/><text x="88"  y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">1</text></g>
-            <g><circle class="btn-rainbow d1" cx="130" cy="166" r="14"/><text x="130" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">2</text></g>
-            <g><circle class="btn-rainbow d2" cx="172" cy="166" r="14"/><text x="172" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">3</text></g>
-            <g><circle class="btn-rainbow d3" cx="88"  cy="208" r="14"/><text x="88"  y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">4</text></g>
-            <g><circle class="btn-rainbow d4" cx="130" cy="208" r="14"/><text x="130" y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">5</text></g>
-            <g><circle class="btn-rainbow d5" cx="172" cy="208" r="14"/><text x="172" y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">6</text></g>
-            <g><circle class="btn-rainbow d6" cx="88"  cy="250" r="14"/><text x="88"  y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">7</text></g>
-            <g><circle class="btn-rainbow d7" cx="130" cy="250" r="14"/><text x="130" y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">8</text></g>
-            <g><circle class="btn-rainbow d8" cx="172" cy="250" r="14"/><text x="172" y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">9</text></g>
-          </svg>
-        </div>
+          <!-- Cal zone -->
+          <div class="cal-zone">
+            <div class="cal-wrap">
+              <svg viewBox="0 0 260 310" width="240" height="286" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <path stroke="var(--cal-stroke)" stroke-width="2.8" fill="var(--cal-fill)" stroke-linejoin="round"
+                      d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+                <rect fill="var(--cal-fill)" stroke="var(--cal-stroke)" stroke-width="2.4" x="62" y="36" width="136" height="92" rx="14"/>
+                <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M82 64 Q98 54 114 64"/>
+                <path stroke="var(--cal-stroke)" stroke-width="2.6" stroke-linecap="round" fill="none" d="M146 64 Q162 54 178 64"/>
+                <circle class="eye eye-left"  fill="var(--cal-stroke)" cx="100" cy="84" r="9"/>
+                <circle class="eye eye-right" fill="var(--cal-stroke)" cx="160" cy="84" r="9"/>
+                <circle fill="var(--cal-fill)" cx="102" cy="82" r="3"/>
+                <circle fill="var(--cal-fill)" cx="162" cy="82" r="3"/>
+                <path class="mouth-closed" stroke="var(--cal-stroke)" stroke-width="2.8" fill="none" stroke-linecap="round" d="M112 108 Q130 120 148 108"/>
+                <ellipse class="mouth-open" cx="130" cy="112" rx="10" ry="8" fill="var(--cal-stroke)"/>
 
-        <!-- SPEECH -->
-        <div class="speech">
-          <span class="speech-line one">Hi, I'm Cal.</span>
-          <span class="speech-line two">FreelanceCal.</span>
-        </div>
+                <g><circle class="btn-rainbow"    cx="88"  cy="166" r="14"/><text x="88"  y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">1</text></g>
+                <g><circle class="btn-rainbow d1" cx="130" cy="166" r="14"/><text x="130" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">2</text></g>
+                <g><circle class="btn-rainbow d2" cx="172" cy="166" r="14"/><text x="172" y="171" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">3</text></g>
+                <g><circle class="btn-rainbow d3" cx="88"  cy="208" r="14"/><text x="88"  y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">4</text></g>
+                <g><circle class="btn-rainbow d4" cx="130" cy="208" r="14"/><text x="130" y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">5</text></g>
+                <g><circle class="btn-rainbow d5" cx="172" cy="208" r="14"/><text x="172" y="213" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">6</text></g>
+                <g><circle class="btn-rainbow d6" cx="88"  cy="250" r="14"/><text x="88"  y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">7</text></g>
+                <g><circle class="btn-rainbow d7" cx="130" cy="250" r="14"/><text x="130" y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">8</text></g>
+                <g><circle class="btn-rainbow d8" cx="172" cy="250" r="14"/><text x="172" y="255" text-anchor="middle" fill="#F7F7F6" font-size="13" font-weight="700" font-family="Lexend">9</text></g>
+              </svg>
+            </div>
+            <div class="cal-shadow"></div>
+          </div>
 
-        <!-- TYPEWRITER TAGLINE -->
-        <div class="type-wrap">
-          <span class="type-line">Less work, more </span><span class="fun-word">Fun.</span>
+          <!-- Bottom zone — typewriter + CTA -->
+          <div class="bottom-zone">
+            <div class="type-wrap">
+              <span class="type-line">Less work, more </span><span class="fun-word">Fun.</span>
+            </div>
+            <div class="cta">Let's play →</div>
+          </div>
+
         </div>
 
         <!-- CONFETTI -->
@@ -481,9 +600,6 @@
         <div class="confetti c4"></div>
         <div class="confetti c5"></div>
         <div class="confetti c6"></div>
-
-        <!-- FINAL CTA -->
-        <div class="cta">Let's play →</div>
 
       </div>
     </div>
@@ -506,6 +622,22 @@
     scene.parentNode.replaceChild(clone, scene);
     const newPick = palette[Math.floor(Math.random() * palette.length)];
     document.documentElement.style.setProperty('--splash', newPick);
+  }
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let next;
+    if (!current) {
+      // No override — toggle opposite of system
+      next = systemDark ? 'light' : 'dark';
+    } else if (current === 'dark') {
+      next = 'light';
+    } else {
+      next = 'dark';
+    }
+    root.setAttribute('data-theme', next);
   }
 </script>
 </body>
