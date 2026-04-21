@@ -110,15 +110,15 @@
     background: var(--bg);
   }
 
-  /* Discreet theme toggle — top-right, only for browser preview. Capacitor app will follow OS theme. */
+  /* Discreet theme toggle — top-right. Inverse colours: dark on light bg, light on dark bg. */
   .theme-toggle {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 12px);
     right: 12px;
     z-index: 99;
-    background: var(--card);
-    color: var(--ink);
-    border: 1px solid var(--divider);
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
     width: 36px;
     height: 36px;
     border-radius: 18px;
@@ -127,7 +127,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.8;
+    opacity: 0.85;
   }
   .theme-toggle:active { transform: scale(0.94); }
 
@@ -382,12 +382,14 @@
     padding: 40px 0 60px 0;
   }
   .cal-wrap {
-    width: 300px;
-    height: 358px;
+    width: min(300px, 72vw);
+    aspect-ratio: 300 / 358;
+    height: auto;
     opacity: 0;
     transform: scale(0.25);
     transform-origin: center;
   }
+  .cal-wrap svg { width: 100%; height: 100%; }
   /* Let the SVG paint outside its viewBox so Cal's pulse-expanded bottom doesn't get clipped */
   .cal-wrap svg { overflow: visible; }
   /* Pulse is applied to the FACE group only, NOT the keypad — digits never scale, never jitter, never smudge.
@@ -564,10 +566,10 @@
   .cta {
     background: var(--ink);
     color: var(--bg);
-    padding: 10px 22px;
+    padding: 12px 26px;
     border-radius: 22px;
     font-family: 'Lexend';
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -576,6 +578,8 @@
     cursor: pointer;
     pointer-events: auto;
     flex-shrink: 0;
+    margin-top: 40px;    /* clear separation from Cal above */
+    margin-bottom: 20px; /* breathing room from bottom edge */
   }
   .scene.started .cta {
     animation: fade-in 0.8s 13.3s forwards;
