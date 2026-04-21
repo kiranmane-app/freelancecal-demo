@@ -9,13 +9,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --page-bg: #E8E8E6;
+    --card-bg: #F7F7F6;
+    --ink: #1A1815;
+    --border: #D0D0CE;
+  }
+  :root[data-theme="dark"] {
+    --page-bg: #1A1A1E;
+    --card-bg: #26262A;
+    --ink: #FFFFFF;
+    --border: #3A3A40;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page-bg: #1A1A1E;
+      --card-bg: #26262A;
+      --ink: #FFFFFF;
+      --border: #3A3A40;
+    }
+  }
   body {
     font-family: 'Lexend', sans-serif;
-    background: #E8E8E6;
-    color: #1A1815;
+    background: var(--page-bg);
+    color: var(--ink);
     padding: 16px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+  }
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 99;
+    background: var(--ink);
+    color: var(--page-bg);
+    border: 1px solid var(--ink);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
   }
   .title-row {
     text-align: center;
@@ -33,10 +72,10 @@
     gap: 16px;
   }
   .card {
-    background: #F7F7F6;
+    background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #D0D0CE;
+    border: 1px solid var(--border);
     position: relative;
     aspect-ratio: 16 / 10;
   }
@@ -65,7 +104,7 @@
   .tag {
     font-family: 'Lexend';
     font-weight: 500;
-    color: #1A1815;
+    color: var(--ink);
   }
   .fun {
     font-family: 'Atkinson Hyperlegible', sans-serif;
@@ -75,11 +114,11 @@
   .intro {
     font-family: 'Atkinson Hyperlegible', sans-serif;
     font-weight: 700;
-    color: #1A1815;
+    color: var(--ink);
   }
   .cta-pill {
-    background: #1A1815;
-    color: #F7F7F6;
+    background: var(--ink);
+    color: var(--page-bg);
     padding: 10px 24px;
     border-radius: 22px;
     font-family: 'Lexend';
@@ -137,6 +176,8 @@
 </style>
 </head>
 <body>
+
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">☼</button>
 
 <div class="title-row">Splash page on desktop — layout compare</div>
 

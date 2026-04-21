@@ -9,13 +9,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --page-bg: #E8E8E6;
+    --card-bg: #F7F7F6;
+    --ink: #1A1815;
+    --border: #D0D0CE;
+  }
+  :root[data-theme="dark"] {
+    --page-bg: #1A1A1E;
+    --card-bg: #26262A;
+    --ink: #FFFFFF;
+    --border: #3A3A40;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page-bg: #1A1A1E;
+      --card-bg: #26262A;
+      --ink: #FFFFFF;
+      --border: #3A3A40;
+    }
+  }
   body {
     font-family: 'Lexend', sans-serif;
-    background: #E8E8E6;
-    color: #1A1815;
+    background: var(--page-bg);
+    color: var(--ink);
     padding: 16px;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+  }
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 99;
+    background: var(--ink);
+    color: var(--page-bg);
+    border: 1px solid var(--ink);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
   }
   .title-row {
     text-align: center;
@@ -24,7 +63,7 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #1A1815;
+    color: var(--ink);
     opacity: 0.6;
   }
   .grid {
@@ -33,10 +72,10 @@
     gap: 16px;
   }
   .card {
-    background: #F7F7F6;
+    background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #D0D0CE;
+    border: 1px solid var(--border);
     position: relative;
     aspect-ratio: 16 / 10;
   }
@@ -44,7 +83,7 @@
     position: absolute;
     top: 10px;
     left: 14px;
-    background: #1A1815;
+    background: var(--ink);
     color: #FFF;
     font-size: 11px;
     font-weight: 700;
@@ -59,7 +98,7 @@
     right: 14px;
     font-size: 11px;
     font-weight: 500;
-    color: #1A1815;
+    color: var(--ink);
     opacity: 0.55;
     z-index: 20;
   }
@@ -67,7 +106,7 @@
   .speech-one {
     font-family: 'Atkinson Hyperlegible', sans-serif;
     font-weight: 700;
-    color: #1A1815;
+    color: var(--ink);
     line-height: 1.05;
   }
   .speech-two {
@@ -78,8 +117,8 @@
     margin-top: 4px;
   }
   .cta-pill {
-    background: #1A1815;
-    color: #F7F7F6;
+    background: var(--ink);
+    color: var(--page-bg);
     padding: 10px 22px;
     border-radius: 22px;
     font-family: 'Lexend';
@@ -142,9 +181,21 @@
     opacity: 0.45;
     pointer-events: none;
   }
+
+  /* Dark mode: flip Cal SVG stroke + fill */
+  :root[data-theme="dark"] svg path[stroke="#1A1815"],
+  :root[data-theme="dark"] svg rect[stroke="#1A1815"] { stroke: #FFFFFF; }
+  :root[data-theme="dark"] svg path[fill="#F7F7F6"] { fill: #26262A; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) svg path[stroke="#1A1815"],
+    :root:not([data-theme="light"]) svg rect[stroke="#1A1815"] { stroke: #FFFFFF; }
+    :root:not([data-theme="light"]) svg path[fill="#F7F7F6"] { fill: #26262A; }
+  }
 </style>
 </head>
 <body>
+
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">☼</button>
 
 <div class="title-row">Cal page on desktop — layout compare</div>
 
