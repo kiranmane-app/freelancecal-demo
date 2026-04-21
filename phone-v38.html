@@ -316,12 +316,14 @@
     pointer-events: none;
   }
 
-  /* Speech zone — top region */
+  /* Speech zone — top region. z-index ensures text is never covered by Cal below. */
   .speech-zone {
     width: 100%;
     text-align: center;
     flex-shrink: 0;
     min-height: 0;
+    position: relative;
+    z-index: 6;
   }
   .speech-line {
     display: block;
@@ -369,20 +371,20 @@
     100% { color: var(--r1); }
   }
 
-  /* Cal zone — middle. Extra top + bottom padding keeps Cal clear of the speech lines above and CTA below. */
+  /* Cal zone — middle. flex-end pushes Cal down toward CTA so it never creeps into speech zone. */
   .cal-zone {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
     position: relative;
     min-height: 0;
-    padding: 40px 0 60px 0;
+    padding: 0;
   }
   .cal-wrap {
-    width: min(300px, 72vw);
+    width: min(250px, 60vw);
     aspect-ratio: 300 / 358;
     height: auto;
     opacity: 0;
