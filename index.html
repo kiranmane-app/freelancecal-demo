@@ -307,7 +307,7 @@
   /* ===== POST-SPLASH FLEX LAYOUT — no overlap, things flow vertically ===== */
   .scene-body {
     position: absolute;
-    inset: 88px 20px 36px 20px;  /* lowered from 40px — more breathing room at top */
+    inset: 40px 20px 20px 20px;  /* speech lines higher, CTA lower — Cal gets more breathing room */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -580,8 +580,8 @@
     cursor: pointer;
     pointer-events: auto;
     flex-shrink: 0;
-    margin-top: 40px;    /* clear separation from Cal above */
-    margin-bottom: 20px; /* breathing room from bottom edge */
+    margin-top: 48px;    /* clear separation from Cal above */
+    margin-bottom: 0;    /* sits at bottom — scene-body already has 20px bottom inset */
   }
   .scene.started .cta {
     animation: fade-in 0.8s 13.3s forwards;
