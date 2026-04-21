@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cal page desktop compare — A / B / C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #E8E8E6;
+    color: #1A1815;
+    padding: 16px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .title-row {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1815;
+    opacity: 0.6;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .card {
+    background: #F7F7F6;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #D0D0CE;
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+  .card .label {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    background: #1A1815;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    z-index: 20;
+  }
+  .card .subtitle {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #1A1815;
+    opacity: 0.55;
+    z-index: 20;
+  }
+
+  .speech-one {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    color: #1A1815;
+    line-height: 1.05;
+  }
+  .speech-two {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    color: #8B5CF6;
+    line-height: 1.05;
+    margin-top: 4px;
+  }
+  .cta-pill {
+    background: #1A1815;
+    color: #F7F7F6;
+    padding: 10px 22px;
+    border-radius: 22px;
+    font-family: 'Lexend';
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* ===== OPTION A — centered, empty sides ===== */
+  .opt-a .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+    padding: 44px 20px 28px;
+  }
+  .opt-a .speech-one { font-size: 30px; }
+  .opt-a .speech-two { font-size: 20px; }
+  .opt-a svg.cal { width: 100px; height: 120px; }
+
+  /* ===== OPTION B — side-by-side: Cal left, speech + CTA right ===== */
+  .opt-b .stage {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 48px 36px 28px;
+    gap: 24px;
+  }
+  .opt-b .left { display: flex; justify-content: center; align-items: center; }
+  .opt-b .right {
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: center;
+    gap: 14px;
+  }
+  .opt-b .speech-one { font-size: 34px; }
+  .opt-b .speech-two { font-size: 22px; }
+  .opt-b svg.cal { width: 150px; height: 180px; }
+
+  /* ===== OPTION C — ambient tint filling sides ===== */
+  .opt-c .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+    padding: 44px 20px 28px;
+    background:
+      radial-gradient(circle at 0% 50%, rgba(233,78,119,0.18), transparent 40%),
+      radial-gradient(circle at 100% 50%, rgba(139,92,246,0.18), transparent 40%),
+      radial-gradient(circle at 50% 0%, rgba(16,185,129,0.12), transparent 40%);
+  }
+  .opt-c .speech-one { font-size: 30px; }
+  .opt-c .speech-two { font-size: 20px; }
+  .opt-c svg.cal { width: 100px; height: 120px; }
+  .opt-c .dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-row">Cal page on desktop — layout compare</div>
+
+<div class="grid">
+
+  <!-- OPTION A — centered, empty sides -->
+  <div class="card opt-a">
+    <div class="label">A</div>
+    <div class="subtitle">centered · empty sides</div>
+    <div class="stage">
+      <div class="speech-one">Hi, I'm Cal.</div>
+      <div class="speech-two">FreelanceCal.</div>
+      <svg class="cal" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="#1A1815" stroke-width="3" fill="#F7F7F6" stroke-linejoin="round" d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+        <rect x="70" y="40" width="120" height="96" rx="8" stroke="#1A1815" stroke-width="2.8" fill="none"/>
+        <path stroke="#1A1815" stroke-width="3" fill="none" stroke-linecap="round" d="M90 100 Q110 120 130 105 Q150 120 170 100"/>
+        <circle cx="100" cy="180" r="12" fill="#E94E77"/><circle cx="130" cy="180" r="12" fill="#F59E0B"/><circle cx="160" cy="180" r="12" fill="#FBBF24"/>
+        <circle cx="100" cy="215" r="12" fill="#10B981"/><circle cx="130" cy="215" r="12" fill="#0EA5E9"/><circle cx="160" cy="215" r="12" fill="#8B5CF6"/>
+      </svg>
+      <div class="cta-pill">Let's play →</div>
+    </div>
+  </div>
+
+  <!-- OPTION B — side-by-side -->
+  <div class="card opt-b">
+    <div class="label">B</div>
+    <div class="subtitle">Cal left · speech right</div>
+    <div class="stage">
+      <div class="left">
+        <svg class="cal" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg">
+          <path stroke="#1A1815" stroke-width="3" fill="#F7F7F6" stroke-linejoin="round" d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+          <rect x="70" y="40" width="120" height="96" rx="8" stroke="#1A1815" stroke-width="2.8" fill="none"/>
+          <path stroke="#1A1815" stroke-width="3" fill="none" stroke-linecap="round" d="M90 100 Q110 120 130 105 Q150 120 170 100"/>
+          <circle cx="100" cy="180" r="12" fill="#E94E77"/><circle cx="130" cy="180" r="12" fill="#F59E0B"/><circle cx="160" cy="180" r="12" fill="#FBBF24"/>
+          <circle cx="100" cy="215" r="12" fill="#10B981"/><circle cx="130" cy="215" r="12" fill="#0EA5E9"/><circle cx="160" cy="215" r="12" fill="#8B5CF6"/>
+        </svg>
+      </div>
+      <div class="right">
+        <div class="speech-one">Hi, I'm Cal.</div>
+        <div class="speech-two">FreelanceCal.</div>
+        <div class="cta-pill" style="margin-top:8px;">Let's play →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION C — ambient rainbow -->
+  <div class="card opt-c">
+    <div class="label">C</div>
+    <div class="subtitle">ambient tint · filled sides</div>
+    <div class="stage">
+      <div class="dot" style="background:#E94E77;top:20%;left:8%;"></div>
+      <div class="dot" style="background:#F59E0B;top:40%;left:5%;"></div>
+      <div class="dot" style="background:#FBBF24;top:65%;left:10%;"></div>
+      <div class="dot" style="background:#10B981;top:25%;right:8%;"></div>
+      <div class="dot" style="background:#0EA5E9;top:50%;right:6%;"></div>
+      <div class="dot" style="background:#8B5CF6;top:72%;right:10%;"></div>
+      <div class="speech-one">Hi, I'm Cal.</div>
+      <div class="speech-two">FreelanceCal.</div>
+      <svg class="cal" viewBox="0 0 260 310" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="#1A1815" stroke-width="3" fill="#F7F7F6" stroke-linejoin="round" d="M44 38 Q38 16 62 12 L198 12 Q222 16 216 38 L216 290 Q222 310 198 310 L62 310 Q38 310 44 290 Z"/>
+        <rect x="70" y="40" width="120" height="96" rx="8" stroke="#1A1815" stroke-width="2.8" fill="none"/>
+        <path stroke="#1A1815" stroke-width="3" fill="none" stroke-linecap="round" d="M90 100 Q110 120 130 105 Q150 120 170 100"/>
+        <circle cx="100" cy="180" r="12" fill="#E94E77"/><circle cx="130" cy="180" r="12" fill="#F59E0B"/><circle cx="160" cy="180" r="12" fill="#FBBF24"/>
+        <circle cx="100" cy="215" r="12" fill="#10B981"/><circle cx="130" cy="215" r="12" fill="#0EA5E9"/><circle cx="160" cy="215" r="12" fill="#8B5CF6"/>
+      </svg>
+      <div class="cta-pill">Let's play →</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

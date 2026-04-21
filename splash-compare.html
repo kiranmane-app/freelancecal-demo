@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splash page desktop compare — A / B / C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #E8E8E6;
+    color: #1A1815;
+    padding: 16px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .title-row {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1815;
+    opacity: 0.6;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .card {
+    background: #F7F7F6;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #D0D0CE;
+    position: relative;
+    aspect-ratio: 16 / 10;
+  }
+  .card .label {
+    position: absolute;
+    top: 10px; left: 14px;
+    background: #1A1815; color: #FFF;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; padding: 4px 10px;
+    border-radius: 12px; z-index: 20;
+  }
+  .card .subtitle {
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 11px; font-weight: 500;
+    color: #1A1815; opacity: 0.55; z-index: 20;
+  }
+
+  .wordmark {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    color: #E94E77;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+  }
+  .tag {
+    font-family: 'Lexend';
+    font-weight: 500;
+    color: #1A1815;
+  }
+  .fun {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    color: #E94E77;
+    font-weight: 700;
+  }
+  .intro {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    color: #1A1815;
+  }
+  .cta-pill {
+    background: #1A1815;
+    color: #F7F7F6;
+    padding: 10px 24px;
+    border-radius: 22px;
+    font-family: 'Lexend';
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-block;
+  }
+
+  /* ===== OPTION A — classic centred ===== */
+  .opt-a .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+    padding: 44px 20px 28px;
+  }
+  .opt-a .wordmark { font-size: 48px; }
+  .opt-a .tag { font-size: 14px; }
+  .opt-a .fun { font-size: 20px; }
+  .opt-a .intro { font-size: 16px; }
+
+  /* ===== OPTION B — oversized wordmark dominates ===== */
+  .opt-b .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 22px;
+    padding: 44px 10px 28px;
+  }
+  .opt-b .wordmark { font-size: 64px; }
+  .opt-b .tag { font-size: 15px; }
+  .opt-b .fun { font-size: 22px; }
+  .opt-b .intro { font-size: 17px; }
+
+  /* ===== OPTION C — magazine cover: content bottom-left ===== */
+  .opt-c .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: flex-end;
+    gap: 14px;
+    padding: 44px 28px 32px;
+  }
+  .opt-c .wordmark { font-size: 60px; text-align: left; }
+  .opt-c .tag { font-size: 14px; text-align: left; }
+  .opt-c .fun { font-size: 20px; }
+  .opt-c .intro { font-size: 15px; text-align: left; }
+  .opt-c .stage::before {
+    content: '';
+    position: absolute;
+    top: 36px; right: 28px;
+    width: 120px; height: 3px;
+    background: linear-gradient(90deg, #E94E77, #F59E0B, #FBBF24, #10B981, #0EA5E9, #8B5CF6);
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-row">Splash page on desktop — layout compare</div>
+
+<div class="grid">
+
+  <!-- OPTION A — centered classic -->
+  <div class="card opt-a">
+    <div class="label">A</div>
+    <div class="subtitle">classic centred</div>
+    <div class="stage">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta-pill">Say hi to Cal</div>
+    </div>
+  </div>
+
+  <!-- OPTION B — oversized wordmark dominates -->
+  <div class="card opt-b">
+    <div class="label">B</div>
+    <div class="subtitle">oversized wordmark hero</div>
+    <div class="stage">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta-pill">Say hi to Cal</div>
+    </div>
+  </div>
+
+  <!-- OPTION C — magazine cover: bottom-left anchor -->
+  <div class="card opt-c">
+    <div class="label">C</div>
+    <div class="subtitle">magazine cover · left anchor</div>
+    <div class="stage">
+      <div class="wordmark">FreelanceCal</div>
+      <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+      <div class="intro">Four steps. Zero stress.</div>
+      <div class="cta-pill">Say hi to Cal</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
