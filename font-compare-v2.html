@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Font compare v2 — slim + playful (6 fresh candidates)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700;900&family=DynaPuff:wght@500;700&family=Righteous&family=Turret+Road:wght@700;800&family=Limelight&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Lexend:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lexend', sans-serif;
+    background: #F7F7F6;
+    color: #1A1815;
+    padding: 24px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #26262A; color: #FFFFFF; }
+    .card { background: #1F1F23; }
+    .badge { background: #FFFFFF; color: #1A1815; }
+  }
+  .card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 28px 20px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .badge {
+    position: absolute;
+    top: -14px;
+    left: 20px;
+    background: #1A1815;
+    color: #FFFFFF;
+    font-family: 'Lexend';
+    font-size: 20px;
+    font-weight: 700;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .font-name {
+    font-family: 'Lexend';
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 56px;
+    margin-bottom: 4px;
+  }
+  .category {
+    font-family: 'Lexend';
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-left: 56px;
+    margin-bottom: 22px;
+  }
+  .wordmark {
+    line-height: 1;
+    word-break: break-word;
+    animation: rainbow-text 6s linear infinite;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  @keyframes rainbow-text {
+    0%   { color: #E40303; } 16%  { color: #FF8C00; } 33%  { color: #FFED00; }
+    50%  { color: #008026; } 66%  { color: #004DFF; } 83%  { color: #750787; }
+    100% { color: #E40303; }
+  }
+  .fun {
+    display: inline-block;
+    line-height: 1;
+    animation: rainbow-text 6s linear infinite;
+  }
+  .card .tag {
+    font-family: 'Lexend';
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .card .intro {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .grandstander .wordmark, .grandstander .intro, .grandstander .fun { font-family: 'Grandstander', cursive; font-weight: 900; }
+  .grandstander .wordmark { font-size: 52px; }
+  .grandstander .fun { font-size: 28px; }
+
+  .dynapuff .wordmark, .dynapuff .intro, .dynapuff .fun { font-family: 'DynaPuff', cursive; font-weight: 700; }
+  .dynapuff .wordmark { font-size: 48px; }
+  .dynapuff .fun { font-size: 26px; }
+
+  .righteous .wordmark, .righteous .intro, .righteous .fun { font-family: 'Righteous', sans-serif; }
+  .righteous .wordmark { font-size: 50px; }
+  .righteous .fun { font-size: 28px; }
+
+  .turret .wordmark, .turret .intro, .turret .fun { font-family: 'Turret Road', sans-serif; font-weight: 800; }
+  .turret .wordmark { font-size: 50px; }
+  .turret .fun { font-size: 28px; }
+
+  .limelight .wordmark, .limelight .intro, .limelight .fun { font-family: 'Limelight', serif; }
+  .limelight .wordmark { font-size: 46px; }
+  .limelight .fun { font-size: 26px; }
+
+  .bricolage .wordmark, .bricolage .intro, .bricolage .fun { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; }
+  .bricolage .wordmark { font-size: 52px; }
+  .bricolage .fun { font-size: 28px; }
+</style>
+</head>
+<body>
+
+<div class="card grandstander">
+  <div class="badge">1</div>
+  <div class="font-name">Grandstander</div>
+  <div class="category">bouncy · varied heights · playful</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="card dynapuff">
+  <div class="badge">2</div>
+  <div class="font-name">DynaPuff</div>
+  <div class="category">rounded · soft · slim-ish</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="card righteous">
+  <div class="badge">3</div>
+  <div class="font-name">Righteous</div>
+  <div class="category">vintage sign · slim · clean</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="card turret">
+  <div class="badge">4</div>
+  <div class="font-name">Turret Road</div>
+  <div class="category">modern display · vintage flavour</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="card limelight">
+  <div class="badge">5</div>
+  <div class="font-name">Limelight</div>
+  <div class="category">art deco · slim · theatrical</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+<div class="card bricolage">
+  <div class="badge">6</div>
+  <div class="font-name">Bricolage Grotesque</div>
+  <div class="category">modern display · character · slim</div>
+  <div class="wordmark">FreelanceCal</div>
+  <div class="tag">Less work, more <span class="fun">Fun.</span></div>
+  <div class="intro">Four steps. Zero stress.</div>
+</div>
+
+</body>
+</html>

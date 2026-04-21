@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FreelanceCal — Less work, more Fun.</title>
+<title>FreelanceCal · phone v37 · Atkinson Hyperlegible wordmark · airy · no borders (trial)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F7F7F6;
@@ -27,24 +27,33 @@
     --scene-scale: 1;
   }
 
-  /* Keypad circles — SVG stroke is reliable on every browser */
+  /* All colour-changing text shares the same thin border — consistency rule. */
+  .splash-tagline .fun-heart,
+  .speech-line.two {
+    -webkit-text-stroke: 0;
+    paint-order: stroke fill;
+  }
+
+  /* Keypad circles — colour-changing fills get the same outline via SVG stroke */
   .btn-rainbow {
     stroke: #1A1815;
     stroke-width: 1;
   }
 
-  /* Dark-mode: swap stroke to white on ALL colour-changing SVG text + keypad */
-  :root[data-theme="dark"] .splash-wordmark-svg text,
-  :root[data-theme="dark"] .fun-heart-svg text,
-  :root[data-theme="dark"] .scene-freelancecal-svg text {
-    stroke: #FFFFFF;
+  /* Dark-mode: swap the border colour to white across every colour-changing element */
+  :root[data-theme="dark"] .splash-wordmark,
+  :root[data-theme="dark"] .splash-tagline .fun-heart,
+  :root[data-theme="dark"] .speech-line.two {
+    -webkit-text-stroke: 0;
+    paint-order: stroke fill;
   }
   :root[data-theme="dark"] .btn-rainbow { stroke: #FFFFFF; }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .splash-wordmark-svg text,
-    :root:not([data-theme="light"]) .fun-heart-svg text,
-    :root:not([data-theme="light"]) .scene-freelancecal-svg text {
-      stroke: #FFFFFF;
+    :root:not([data-theme="light"]) .splash-wordmark,
+    :root:not([data-theme="light"]) .splash-tagline .fun-heart,
+    :root:not([data-theme="light"]) .speech-line.two {
+      -webkit-text-stroke: 0;
+      paint-order: stroke fill;
     }
     :root:not([data-theme="light"]) .btn-rainbow { stroke: #FFFFFF; }
   }
@@ -163,26 +172,19 @@
     align-items: center; justify-content: center;
     width: 100%;
   }
-  /* Wordmark is now SVG (see HTML). SVG text gives exact same stroke+fill rendering on iOS, Android, desktop. */
-  .splash-wordmark-svg {
-    width: min(360px, 94%);
-    height: auto;
+  .splash-wordmark {
+    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-size: 44px;
+    color: var(--r1);  /* starts at first rainbow colour, cycled by rainbow-text */
     opacity: 0;
-    overflow: visible;
-    animation: soft-in 0.8s ease-out 0.6s forwards;
-  }
-  .splash-wordmark-svg text {
-    font-family: 'Fredericka the Great', serif;
-    font-size: 60px;
-    fill: var(--r1);
-    stroke: #1A1815;
-    stroke-width: 0.5;
-    animation: rainbow-svg-fill 6s linear 1.4s infinite;
-  }
-  @keyframes rainbow-svg-fill {
-    0%   { fill: var(--r1); } 16% { fill: var(--r2); } 33% { fill: var(--r3); }
-    50%  { fill: var(--r4); } 66% { fill: var(--r5); } 83% { fill: var(--r6); }
-    100% { fill: var(--r1); }
+    line-height: 1;
+    /* Thin border — 1px stroke with paint-order:stroke-fill means fill covers INSIDE half of stroke,
+       so only outer ~0.5px is visible. Crisp, thin, not scribbly. Same for ALL colour-changing text. */
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+    paint-order: stroke fill;
+    animation: soft-in 0.8s ease-out 0.6s forwards,
+               rainbow-text 6s linear 1.4s infinite;
   }
   .splash-tagline {
     margin-top: 32px;  /* was 18px — more breathing room under the wordmark */
@@ -205,32 +207,24 @@
   }
   @keyframes type-splash { 0% { width: 0; } 100% { width: 16ch; } }
 
-  /* "Fun." is now SVG — same stroke+fill reliability as wordmark */
-  .splash-tagline .fun-heart-svg {
+  .splash-tagline .fun-heart {
     display: inline-block;
-    width: 70px;
-    height: 42px;
+    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-size: 32px;
+    color: var(--r1);  /* rainbow-cycle keeps "Fun." lively across modes */
     margin-left: 4px;
     vertical-align: middle;
     transform-origin: center;
     opacity: 0;
-    overflow: visible;
     animation: fade-in 0.4s 3.0s forwards,
-               heartbeat 3.6s ease-in-out 3.6s infinite;
-  }
-  .splash-tagline .fun-heart-svg text {
-    font-family: 'Fredericka the Great', serif;
-    font-size: 32px;
-    fill: var(--r1);
-    stroke: #1A1815;
-    stroke-width: 0.4;
-    animation: rainbow-svg-fill 6s linear 3.6s infinite;
+               heartbeat 3.6s ease-in-out 3.6s infinite,
+               rainbow-text 6s linear 3.6s infinite;
   }
 
   /* Intro line — FONT INVERSION: "Four steps. Zero" in Fredericka (playful); "stress" in boring Lexend (the thing being cancelled). */
   .splash-intro {
     margin-top: 48px;
-    font-family: 'Fredericka the Great', serif;
+    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
     font-size: 22px;
     font-weight: 400;
     color: var(--ink);
@@ -352,7 +346,7 @@
   }
   .speech-line {
     display: block;
-    font-family: 'Fredericka the Great', serif;
+    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
     opacity: 0;
     letter-spacing: 0.01em;
     transform-origin: center;
@@ -371,40 +365,16 @@
   }
   .speech-line.two {
     font-size: 28px;
-    color: transparent;  /* actual glyphs are rendered by nested SVG */
+    color: var(--r1);
     margin-top: 12px;
     transform: translateY(200px) scale(0.18);
-  }
-  .speech-line.two .scene-freelancecal-svg {
-    display: inline-block;
-    width: 220px;
-    height: 42px;
-    overflow: visible;
-    vertical-align: middle;
-  }
-  .speech-line.two .scene-freelancecal-svg text {
-    font-family: 'Fredericka the Great', serif;
-    font-size: 28px;
-    fill: var(--r1);
-    stroke: #1A1815;
-    stroke-width: 0.4;
-  }
-  :root[data-theme="dark"] .speech-line.two .scene-freelancecal-svg text {
-    stroke: #FFFFFF;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .speech-line.two .scene-freelancecal-svg text {
-      stroke: #FFFFFF;
-    }
   }
   .scene.started .speech-line.one {
     animation: word-emit 1.8s cubic-bezier(0.16, 1, 0.3, 1) 6.7s forwards;
   }
   .scene.started .speech-line.two {
-    animation: word-emit-two 1.8s cubic-bezier(0.16, 1, 0.3, 1) 8.5s forwards;
-  }
-  .scene.started .speech-line.two .scene-freelancecal-svg text {
-    animation: rainbow-svg-fill 6s linear 10.3s infinite;
+    animation: word-emit-two 1.8s cubic-bezier(0.16, 1, 0.3, 1) 8.5s forwards,
+               rainbow-text 6s linear 10.3s infinite;
   }
   @keyframes word-emit {
     0%   { opacity: 0; transform: translateY(260px) scale(0.18); }
@@ -525,7 +495,7 @@
   }
   .fun-word {
     display: inline-block;
-    font-family: 'Fredericka the Great', serif;
+    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
     font-size: 24px;
     color: var(--r1);
     vertical-align: middle;
@@ -683,7 +653,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">FreelanceCal · phone master (Splash v2)</div>
+    <div class="title">FreelanceCal · phone v37 · Atkinson Hyperlegible wordmark · airy · no borders (trial)</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
@@ -698,10 +668,8 @@
         <!-- SPLASH CURTAIN — entire curtain is clickable, not just the button -->
         <div class="splash-curtain" id="splashCurtain" onclick="enterApp(event)">
           <div class="splash-content">
-            <svg class="splash-wordmark-svg" viewBox="0 0 420 80" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              <text x="210" y="60" text-anchor="middle" paint-order="stroke fill">FreelanceCal</text>
-            </svg>
-            <div class="splash-tagline"><span class="splash-type">Less work, more </span><svg class="fun-heart-svg" viewBox="0 0 70 42" xmlns="http://www.w3.org/2000/svg"><text x="35" y="32" text-anchor="middle" paint-order="stroke fill">Fun.</text></svg></div>
+            <div class="splash-wordmark">FreelanceCal</div>
+            <div class="splash-tagline"><span class="splash-type">Less work, more </span><span class="fun-heart">Fun.</span></div>
             <div class="splash-intro">Four steps. Zero <span class="stress">stress.<svg class="strike-svg" viewBox="0 0 100 30" preserveAspectRatio="none"><path class="stroke-1" d="M1,17 Q28,9 58,15 T99,13"/><path class="stroke-2" d="M1,15 Q32,21 66,13 T99,18"/><path class="stroke-3" d="M1,19 Q40,14 70,20 T99,15"/></svg></span></div>
           </div>
           <button class="splash-cta" type="button" onclick="enterApp(event)">Say hi to Cal</button>
@@ -713,7 +681,7 @@
           <!-- Speech zone -->
           <div class="speech-zone">
             <span class="speech-line one">Hi, I'm Cal.</span>
-            <span class="speech-line two"><svg class="scene-freelancecal-svg" viewBox="0 0 220 42" xmlns="http://www.w3.org/2000/svg"><text x="110" y="30" text-anchor="middle" paint-order="stroke fill">FreelanceCal.</text></svg></span>
+            <span class="speech-line two">FreelanceCal.</span>
           </div>
 
           <!-- Cal zone -->

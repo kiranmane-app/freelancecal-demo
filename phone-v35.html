@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FreelanceCal · phone v37 · Atkinson Hyperlegible wordmark · airy · no borders (trial)</title>
+<title>FreelanceCal · phone v35 · Grandstander wordmark (trial — bouncy playful)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@700;900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F7F7F6;
@@ -30,7 +30,7 @@
   /* All colour-changing text shares the same thin border — consistency rule. */
   .splash-tagline .fun-heart,
   .speech-line.two {
-    -webkit-text-stroke: 0;
+    -webkit-text-stroke: 1px #1A1815;
     paint-order: stroke fill;
   }
 
@@ -44,7 +44,7 @@
   :root[data-theme="dark"] .splash-wordmark,
   :root[data-theme="dark"] .splash-tagline .fun-heart,
   :root[data-theme="dark"] .speech-line.two {
-    -webkit-text-stroke: 0;
+    -webkit-text-stroke: 1px #FFFFFF;
     paint-order: stroke fill;
   }
   :root[data-theme="dark"] .btn-rainbow { stroke: #FFFFFF; }
@@ -52,7 +52,7 @@
     :root:not([data-theme="light"]) .splash-wordmark,
     :root:not([data-theme="light"]) .splash-tagline .fun-heart,
     :root:not([data-theme="light"]) .speech-line.two {
-      -webkit-text-stroke: 0;
+      -webkit-text-stroke: 1px #FFFFFF;
       paint-order: stroke fill;
     }
     :root:not([data-theme="light"]) .btn-rainbow { stroke: #FFFFFF; }
@@ -173,15 +173,15 @@
     width: 100%;
   }
   .splash-wordmark {
-    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
-    font-size: 44px;
+    font-family: 'Grandstander', cursive; font-weight: 900;
+    font-size: 50px;
     color: var(--r1);  /* starts at first rainbow colour, cycled by rainbow-text */
     opacity: 0;
     line-height: 1;
     /* Thin border — 1px stroke with paint-order:stroke-fill means fill covers INSIDE half of stroke,
        so only outer ~0.5px is visible. Crisp, thin, not scribbly. Same for ALL colour-changing text. */
     text-shadow: none;
-    -webkit-text-stroke: 0;
+    -webkit-text-stroke: 1px #1A1815;
     paint-order: stroke fill;
     animation: soft-in 0.8s ease-out 0.6s forwards,
                rainbow-text 6s linear 1.4s infinite;
@@ -209,7 +209,7 @@
 
   .splash-tagline .fun-heart {
     display: inline-block;
-    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-family: 'Grandstander', cursive; font-weight: 900;
     font-size: 32px;
     color: var(--r1);  /* rainbow-cycle keeps "Fun." lively across modes */
     margin-left: 4px;
@@ -224,7 +224,7 @@
   /* Intro line — FONT INVERSION: "Four steps. Zero" in Fredericka (playful); "stress" in boring Lexend (the thing being cancelled). */
   .splash-intro {
     margin-top: 48px;
-    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-family: 'Grandstander', cursive; font-weight: 900;
     font-size: 22px;
     font-weight: 400;
     color: var(--ink);
@@ -346,7 +346,7 @@
   }
   .speech-line {
     display: block;
-    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-family: 'Grandstander', cursive; font-weight: 900;
     opacity: 0;
     letter-spacing: 0.01em;
     transform-origin: center;
@@ -495,7 +495,7 @@
   }
   .fun-word {
     display: inline-block;
-    font-family: 'Atkinson Hyperlegible', sans-serif; font-weight: 700; letter-spacing: 0.02em;
+    font-family: 'Grandstander', cursive; font-weight: 900;
     font-size: 24px;
     color: var(--r1);
     vertical-align: middle;
@@ -653,7 +653,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="title">FreelanceCal · phone v37 · Atkinson Hyperlegible wordmark · airy · no borders (trial)</div>
+    <div class="title">FreelanceCal · phone v35 · Grandstander wordmark (trial — bouncy playful)</div>
     <div class="controls">
       <button class="btn btn-ghost" onclick="toggleTheme()">Light / Dark</button>
       <button class="btn" onclick="replay()">Replay</button>
