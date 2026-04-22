@@ -649,7 +649,6 @@
             <div class="splash-tagline"><span class="splash-type">Less work, more </span><span class="fun-heart">Fun.</span></div>
             <div class="splash-intro">Four steps. Zero <span class="stress">stress.<svg class="strike-svg" viewBox="0 0 100 30" preserveAspectRatio="none"><path class="stroke-1" d="M1,17 Q28,9 58,15 T99,13"/><path class="stroke-2" d="M1,15 Q32,21 66,13 T99,18"/><path class="stroke-3" d="M1,19 Q40,14 70,20 T99,15"/></svg></span></div>
           </div>
-          <button class="splash-cta" type="button" onclick="enterApp(event)">Say hi to Cal</button>
         </div>
 
         <!-- POST-SPLASH SCENE — flex layout, no overlap -->
@@ -697,7 +696,7 @@
 
           <!-- Bottom zone — CTA only (tagline removed; it's already on the splash) -->
           <div class="bottom-zone">
-            <div class="cta">Let's play →</div>
+            <div class="cta" onclick="location.reload()">Let's play →</div>
           </div>
 
         </div>
@@ -735,13 +734,16 @@
     }
   }
 
-  // Normal splash flow — user presses CTA or curtain, scene starts, curtain slides up
+  // Auto-sequence — splash plays its animations then curtain lifts automatically.
+  // Tap-to-skip still works for users who don't want to wait.
   document.addEventListener('DOMContentLoaded', function () {
     const curtain = document.getElementById('splashCurtain');
     if (curtain) {
       curtain.addEventListener('click', enterApp);
       curtain.addEventListener('touchend', function (e) { enterApp(e); }, { passive: true });
     }
+    // Auto-fire after the splash animations complete (wordmark + tagline + intro + "Fun." heartbeat settle).
+    setTimeout(enterApp, 4800);
   });
 
   function replay() {
